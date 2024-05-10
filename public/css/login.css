@@ -1,0 +1,50 @@
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+[type=radio] + img {
+    cursor: pointer;
+}
+
+[type=radio]:checked + img {
+    outline: 5px solid purple;
+    border-radius: 10px;
+}
+
+body {
+  background-color: rgb(180, 100, 144); /* Color de fondo */
+  padding-top: 50px; /* Ajuste de margen superior */
+}
+
+.form-container {
+  background-color: #FFFFFF; /* Color de fondo del formulario */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+img {
+  max-width: 100px; /* Tamaño máximo de las imágenes */
+}
+
+.img-opcion{
+    margin: 0 20px;
+}
+
+.container{
+    margin-top: 10%;
+}
+
+.btn{
+  background-color: white;
+  border-color: purple;
+  color: purple; /* Text color */
+}
+
+.btn:hover{
+  background-color: purple;
+  border-color: purple;
+  color: white; /* Text color */
+}
