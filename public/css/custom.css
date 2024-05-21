@@ -24,8 +24,7 @@ body {
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
-    background:#F3F3F3;
-   
+    background-color: white; /* Fondo para que se vea la marca de agua */
 }
 #page-inner {
     width:100%;
@@ -392,5 +391,6 @@ line-height: 1.428571429;
     border-color: purple;
     color: white; /* Text color */
   }
+
 
 

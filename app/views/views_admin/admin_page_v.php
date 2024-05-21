@@ -66,7 +66,7 @@
                                 <a href="#">Ver</a>
                             </li>
                             <li>
-                                <a href="admin_crear_educador_v.php">Crear</a>
+                                <a href="../../models/models_admin/admin_crear_educador_m.php">Crear</a>
                             </li>
                             <li>
                                 <a href="#">Editar</a>

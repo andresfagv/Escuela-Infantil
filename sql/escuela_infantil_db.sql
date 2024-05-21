@@ -11,11 +11,12 @@ USE escuela_infantil;
 CREATE TABLE Users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    password_salt VARCHAR(255) NOT NULL,
     tipo_usuario ENUM('admin', 'educador', 'padre') NOT NULL
 );
 
--- Creación de la tabla Eduacador
+-- Creación de la tabla Educador
 CREATE TABLE Educador (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_user INT NOT NULL,
@@ -25,6 +26,7 @@ CREATE TABLE Educador (
     email VARCHAR(255) NOT NULL,
     tel VARCHAR(20) NOT NULL,
     f_nacimiento DATE NOT NULL,
+    sexo ENUM('hombre', 'mujer') NOT NULL,
     img VARCHAR(20),
     FOREIGN KEY (id_user) REFERENCES Users(id)
 );
@@ -39,6 +41,7 @@ CREATE TABLE Padre (
     tel VARCHAR(20) NOT NULL,
     id_alumno INT NOT NULL,
     relacion VARCHAR(100) NOT NULL,
+    sexo ENUM('hombre', 'mujer') NOT NULL,
     FOREIGN KEY (id_user) REFERENCES Users(id)
 );
 
@@ -48,6 +51,7 @@ CREATE TABLE Estudiante (
     nombre VARCHAR(255) NOT NULL,
     apellido VARCHAR(255) NOT NULL,
     f_nacimiento DATE NOT NULL,
+    sexo ENUM('hombre', 'mujer') NOT NULL,
     alergias TEXT,
     img VARCHAR(20),
     comentarios TEXT
@@ -56,10 +60,17 @@ CREATE TABLE Estudiante (
 -- Creación de la tabla Clase
 CREATE TABLE Clase (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_educador INT NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     nivel VARCHAR(100) NOT NULL,
-    descripcion TEXT,
+    descripcion TEXT
+);
+
+-- Creación de la tabla ClaseEducador (tabla intermedia)
+CREATE TABLE ClaseEducador (
+    id_clase INT NOT NULL,
+    id_educador INT NOT NULL,
+    PRIMARY KEY (id_clase, id_educador),
+    FOREIGN KEY (id_clase) REFERENCES Clase(id),
     FOREIGN KEY (id_educador) REFERENCES Educador(id)
 );
 
@@ -72,7 +83,7 @@ CREATE TABLE Inscripcion (
     FOREIGN KEY (id_estudiante) REFERENCES Estudiante(id)
 );
 
--- Creación de la tabla contacto
+-- Creación de la tabla Contacto
 CREATE TABLE Contacto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -84,10 +95,38 @@ CREATE TABLE Contacto (
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id)
 );
 
+-- Creación de la tabla Fotografias
 CREATE TABLE Fotografias (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_clase INT NOT NULL,
     ruta_foto VARCHAR(255) NOT NULL,
     descripcion TEXT,
     FOREIGN KEY (id_clase) REFERENCES Clase(id)
+);
+
+-- Crear la tabla MenuSemanal
+CREATE TABLE MenuSemanal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_clase INT NOT NULL,
+    dia ENUM('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes') NOT NULL,
+    comida1 VARCHAR(255) NOT NULL,
+    comida2 VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_clase) REFERENCES Clase(id)
+);
+
+-- Crear la tabla Productos
+CREATE TABLE Productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tipo ENUM('Juguete', 'Libro') NOT NULL,
+    descripcion VARCHAR(255) NOT NULL
+);
+
+-- Crear la tabla Prestamo
+CREATE TABLE Prestamo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT NOT NULL,
+    id_alumno INT NOT NULL,
+    fecha_prestamo DATE NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES Productos(id),
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id)
 );
