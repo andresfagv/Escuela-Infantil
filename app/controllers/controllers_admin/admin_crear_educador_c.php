@@ -20,6 +20,12 @@ session_start();
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="icon" href="../../../public/img/icon.PNG" type="image/png">
+
+    <script>
+        function confirmarEnvio() {
+            return confirm("¿Estás seguro de que quieres crear este usuario?");
+        }
+    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -62,7 +68,7 @@ session_start();
                         <a href="#"><img src="../../../public/img/educador.png"> Educadores<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_educadores_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_educadores_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_educador_c.php">Crear</a>
@@ -119,7 +125,7 @@ session_start();
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                                        <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
                                             <div class="form-group">
                                                 <label>Nombre</label>
                                                 <input class="form-control" id="nombre" name="nombre" required/>
@@ -236,14 +242,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($extension == "jpg" || $extension == "jpeg") {
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_jpg)) {
                 echo "La foto ha sido subida con éxito.";
-                // Ahora puedes usar $nombreFoto para guardar en la base de datos
+                $nombre_foto_extension = $nombre_foto . ".jpg";
             } else {
                 echo "Lo siento, hubo un error al subir la foto.";
             }
         } elseif ($extension == "png") {
             if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_png)) {
                 echo "La foto ha sido subida con éxito.";
-                // Ahora puedes usar $nombreFoto para guardar en la base de datos
+                $nombre_foto_extension = $nombre_foto . ".png";
             } else {
                 echo "Lo siento, hubo un error al subir la foto.";
             }
@@ -253,7 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $password = crearPassword($email, $dni);
         crearUser($password, $email);
-        crearEducador($nombre, $apellido, $dni, $email, $tel, $f_nac, $sexo, $nombre_foto);
+        crearEducador($nombre, $apellido, $dni, $email, $tel, $f_nac, $sexo, $nombre_foto_extension);
     }
 
     

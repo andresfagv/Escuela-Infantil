@@ -392,5 +392,16 @@ line-height: 1.428571429;
     color: white; /* Text color */
   }
 
+  td.img-td {
+    max-width: 100px; /* Ancho máximo del td */
+}
+
+.img-responsive {
+    max-width: 100%; /* Limita el tamaño máximo al ancho del contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+}
 
 
+td, th {
+    text-align: center;
+    vertical-align: middle !important; /* Centrado vertical */}

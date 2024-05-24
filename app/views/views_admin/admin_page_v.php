@@ -57,7 +57,7 @@
                         <a href="#"><img src="../../../public/img/educador.png"> Educadores<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_educadores_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_educadores_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_educador_c.php">Crear</a>
