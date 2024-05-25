@@ -147,7 +147,7 @@
                                                     <td><?= $educador['tel'] ?></td>
                                                     <td><?= $educador['f_nacimiento'] ?></td>
                                                     <td><?= $educador['sexo'] ?></td>
-                                                    <td><a href="admin_editar_educador_v.php?id=<?= $educador['id'] ?>">Editar</a></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_editar_educador_c.php?id=<?= $educador['id'] ?>">Editar</a></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_listar_educadores_c.php?action=delete&id=<?= $educador['id'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
