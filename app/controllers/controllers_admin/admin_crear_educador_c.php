@@ -56,7 +56,7 @@ session_start();
                         <a href="#"><img src="../../../public/img/salon-de-clases.png"> Clases<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_clase_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_clase_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_clase_c.php">Crear</a>
@@ -80,7 +80,7 @@ session_start();
                         <a href="#"><img src="../../../public/img/ninos.png"> Alumnos<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_alumnos_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_alumnos_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_alumno_c.php">Crear</a>
@@ -92,7 +92,7 @@ session_start();
                         <a href="#"><img src="../../../public/img/contactos.png"> Contactos<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_contacto_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_contacto_c.php">Crear</a>

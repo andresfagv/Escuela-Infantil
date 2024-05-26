@@ -1,6 +1,8 @@
 <?php
 session_start();
-require_once("../../models/models_admin/admin_editar_educador_m.php");
+require_once("../../models/models_admin/admin_editar_menu_m.php");
+$nombre_clase = obtenerNombreClase($idClase);
+$menu = obtenerMenuPorClase($idClase);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
 
     <script>
         function confirmarEnvio() {
-            return confirm("¿Estás seguro de que quieres editar este usuario?");
+            return confirm("¿Estás seguro de que quieres editar este menú?");
         }
     </script>
 </head>
@@ -112,7 +114,7 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Editar Educador</h2>
+                        <h2>Editar Menu: <?php echo $nombre_clase; ?></h2>
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -122,56 +124,30 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
                         <!-- Form Elements -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Datos Personales
+                                Datos Menu
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?id=' . $id); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
-                                            <div class="form-group">
-                                                <label>Nombre</label>
-                                                <input class="form-control" id="nombre" name="nombre" value="<?php echo htmlspecialchars($educador['nombre']); ?>" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Apellidos</label>
-                                                <input class="form-control" id="apellido" name="apellido" value="<?php echo htmlspecialchars($educador['apellido']); ?>" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>DNI</label>
-                                                <input class="form-control" id="dni" name="dni" value="<?php echo htmlspecialchars($educador['DNI']); ?>" required readonly/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>E-mail</label>
-                                                <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($educador['email']); ?>" required readonly />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Teléfono</label>
-                                                <input class="form-control" type="tel" id="tel" name="tel" value="<?php echo htmlspecialchars($educador['tel']); ?>" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Fecha Nacimiento</label>
-                                                <input class="form-control" type="date" id="f_nac" name="f_nac" value="<?php echo htmlspecialchars($educador['f_nacimiento']); ?>" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Foto Perfil / Avatar</label>
-                                                <input type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png" />
-                                                <br>
-                                                <img src="<?php echo htmlspecialchars('../../../media/avatar/educador/' . $educador['img']); ?>" alt="Foto actual" style="max-width: 200px;"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Sexo</label>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="sexo" value="hombre" <?php echo ($educador['sexo'] == 'hombre') ? 'checked' : ''; ?> />Hombre
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="sexo" value="mujer" <?php echo ($educador['sexo'] == 'mujer') ? 'checked' : ''; ?> />Mujer
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-default">Editar</button>
+                                    <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . urlencode($idClase); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
+
+                                            <?php if (!empty($menu)) : ?>
+                                                <?php foreach ($menu as $index => $diaMenu) : ?>
+                                                    <div class="form-group">
+                                                        <label><?php echo $diaMenu['dia']; ?> Comida 1 </label>
+                                                        <input class="form-control" name="comida1_<?php echo $index; ?>" value="<?php echo htmlspecialchars($diaMenu['comida1']); ?>" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label><?php echo $diaMenu['dia']; ?> Comida 2 </label>
+                                                        <input class="form-control" name="comida2_<?php echo $index; ?>" value="<?php echo htmlspecialchars($diaMenu['comida2']); ?>" required />
+                                                    </div>
+                                                    <input type="hidden" name="dia_<?php echo $index; ?>" value="<?php echo $diaMenu['dia']; ?>">
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <p>No se encontró un menú para la clase especificada.</p>
+                                            <?php endif; ?>
+
+                                            <button type="submit" class="btn btn-default">Enviar</button>
                                             <button type="reset" class="btn btn-primary">Borrar Datos</button>
                                         </form>
                                     </div>
@@ -205,65 +181,33 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
 </html>
 
 <?php
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = test_input($_POST['nombre']);
-    $apellido = test_input($_POST['apellido']);
-    $dni = test_input($_POST['dni']);
-    $email = test_input($_POST['email']);
-    $tel = test_input($_POST['tel']);
-    $f_nac = test_input($_POST['f_nac']);
-    $sexo = test_input($_POST['sexo']);
+    $idClase = $_GET['id'];
 
-    $seguir = true;
-    $mensaje = 'Usuario Creado';
 
-    
-    if($seguir){
-        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-            $target_dir = "../../../media/avatar/educador/"; // Carpeta de destino
-            $nombre_foto = $nombre . "_" . $apellido;
-    
-            // Obtener la extensión del archivo subido
-            $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
-    
-            // Combinar el nombre base con ambas extensiones
-            $target_file_jpg = $target_dir . $nombre_foto . ".jpg";
-            $target_file_png = $target_dir . $nombre_foto . ".png";
-    
-            // Mover la foto a la carpeta de destino con la nueva extensión
-            if ($extension == "jpg" || $extension == "jpeg") {
-                if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_jpg)) {
-                    echo "La foto ha sido subida con éxito.";
-                    $nombre_foto_extension = $nombre_foto . ".jpg";
-                } else {
-                    echo "Lo siento, hubo un error al subir la foto.";
-                }
-            } elseif ($extension == "png") {
-                if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_png)) {
-                    echo "La foto ha sido subida con éxito.";
-                    $nombre_foto_extension = $nombre_foto . ".png";
-                } else {
-                    echo "Lo siento, hubo un error al subir la foto.";
-                }
-            } else {
-                echo "Formato de imagen no compatible. Solo se admiten archivos JPG o PNG.";
-            }
+    try {
+        global $conn;
+        $diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+
+        for ($index = 0; $index < 5; $index++) {
+            $dia = $diasSemana[$index];
+            $comida1 = $_POST["comida1_" . $index];
+            $comida2 = $_POST["comida2_" . $index];
+
+            $stmt = $conn->prepare("UPDATE menusemanal SET comida1 = :comida1, comida2 = :comida2 WHERE (dia = :dia AND id_clase = :id_clase)");
+            $stmt->bindParam(':comida1', $comida1);
+            $stmt->bindParam(':comida2', $comida2);
+            $stmt->bindParam(':dia', $dia);
+            $stmt->bindParam(':id_clase', $idClase);
+            $stmt->execute();
         }
-        
-        $nombre_foto_extension = $educador['img'];
 
-        editarEducador($nombre, $apellido, $email, $tel, $f_nac, $sexo, $nombre_foto_extension);
-
-        echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_educadores_c.php';</script>";
-
-
-
+        echo "Menú actualizado con éxito.";
+    } catch (PDOException $e) {
+        echo "Error al actualizar el menú: " . $e->getMessage();
     }
+    $conn = null;
+    echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_clase_c.php';</script>";
 
-    
 }
-
-
 ?>

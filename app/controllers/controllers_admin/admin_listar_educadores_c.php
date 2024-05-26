@@ -20,4 +20,6 @@ switch($action) {
         break;
 }
 
+?>
+
 
