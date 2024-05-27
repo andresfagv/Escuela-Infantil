@@ -42,8 +42,11 @@ CREATE TABLE Padre (
     id_alumno INT NOT NULL,
     relacion VARCHAR(100) NOT NULL,
     sexo ENUM('hombre', 'mujer') NOT NULL,
+    DNI VARCHAR(20) NOT NULL,
     FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
 );
+
+
 
 -- Creación de la tabla Estudiante
 CREATE TABLE Estudiante (
@@ -130,3 +133,30 @@ CREATE TABLE Prestamo (
     FOREIGN KEY (id_producto) REFERENCES Productos(id),
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id)
 );
+
+
+-- Triggers para eliminar datos despues de eliminar algunos campos
+
+DELIMITER //
+
+CREATE TRIGGER eliminar_padre_despues_de_eliminar_alumno 
+AFTER DELETE ON Estudiante 
+FOR EACH ROW 
+BEGIN 
+    DELETE FROM Padre WHERE id_alumno = OLD.id; 
+END; //
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE TRIGGER eliminar_usuario_despues_de_eliminar_padre 
+AFTER DELETE ON Padre 
+FOR EACH ROW 
+BEGIN 
+    DELETE FROM Users WHERE id = OLD.id_user; 
+END; //
+
+DELIMITER ;
+

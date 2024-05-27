@@ -260,6 +260,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = crearPassword($email, $dni);
         crearUser($password, $email);
         crearEducador($nombre, $apellido, $dni, $email, $tel, $f_nac, $sexo, $nombre_foto_extension);
+        echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_educadores_c.php';</script>";
+
     }
 
     

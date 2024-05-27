@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -20,7 +19,7 @@
 
     <script>
         function confirmarEliminacion() {
-            return confirm("¿Estás seguro de que quieres eliminar este educador?");
+            return confirm("¿Estás seguro de que quieres eliminar este alumno?");
         }
     </script>
 </head>
@@ -108,14 +107,14 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Educadores</h2>
+                        <h2>Alumnos</h2>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Lista de Educadores
+                            Lista de Alumnos
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -125,30 +124,29 @@
                                             <th>Foto</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
-                                            <th>DNI</th>
-                                            <th>E-mail</th>
-                                            <th>Teléfono</th>
+                                            <th>Alergias</th>
                                             <th>Fecha Nacimiento</th>
-                                            <th>Sexo</th>
+                                            <th>Nombre Tutor Legal</th>
+                                            <th>Apellido Tutor Legal</th>
+                                            <th>Contacto</th>
                                             <th>Editar</th>
                                             <th>Eliminar</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($educadores): ?>
-                                            <?php foreach ($educadores as $educador): ?>
+                                        <?php if ($datos_estudiantes): ?>
+                                            <?php foreach ($datos_estudiantes as $dato_estudiante): ?>
                                                 <tr>
-                                                    <td class="img-td"><img src="<?= '../../../media/avatar/educador/' . $educador['img'] ?>" alt="Foto" class="img-responsive" /></td>
-                                                    <td><?= $educador['nombre'] ?></td>
-                                                    <td><?= $educador['apellido'] ?></td>
-                                                    <td><?= $educador['DNI'] ?></td>
-                                                    <td><?= $educador['email'] ?></td>
-                                                    <td><?= $educador['tel'] ?></td>
-                                                    <td><?= $educador['f_nacimiento'] ?></td>
-                                                    <td><?= $educador['sexo'] ?></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_editar_educador_c.php?id=<?= $educador['id'] ?>">Editar</a></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_listar_educadores_c.php?action=delete&id=<?= $educador['id'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
+                                                    <td class="img-td"><img src="<?= '../../../media/avatar/alumno/' . $dato_estudiante['img'] ?>" alt="Foto" class="img-responsive" /></td>
+                                                    <td><?= $dato_estudiante['nombre_estudiante'] ?></td>
+                                                    <td><?= $dato_estudiante['apellido_estudiante'] ?></td>
+                                                    <td><?= $dato_estudiante['f_nacimiento'] ?></td>
+                                                    <td><?= $dato_estudiante['alergias'] ?></td>
+                                                    <td><?= $dato_estudiante['nombre_padre'] ?></td>
+                                                    <td><?= $dato_estudiante['apellido_padre'] ?></td>
+                                                    <td><?= $dato_estudiante['tel'] ?></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_editar_educador_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>">Editar</a></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_listar_educadores_c.php?action=delete&id=<?= $dato_estudiante['id_estudiante'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>
