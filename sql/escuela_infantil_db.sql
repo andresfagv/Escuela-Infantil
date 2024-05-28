@@ -120,8 +120,9 @@ CREATE TABLE MenuSemanal (
 -- Crear la tabla Productos
 CREATE TABLE Productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(45) NOT NULL,
     tipo ENUM('Juguete', 'Libro') NOT NULL,
-    descripcion VARCHAR(255) NOT NULL
+    descripcion VARCHAR(255)
 );
 
 -- Crear la tabla Prestamo

@@ -24,9 +24,9 @@
         }
 
         function mostrarFormulario() {
-            var select = document.getElementById("select-alumno");
+            var select = document.getElementById("select-clase");
             var form = document.getElementById("formularioContacto");
-            var hiddenInput = document.getElementById("id_estudiante_hidden");
+            var hiddenInput = document.getElementById("id_clase_hidden");
             if (select.value !== "") {
                 form.style.display = "block";
                 hiddenInput.value = select.value; // Asigna el valor del estudiante seleccionado al campo oculto
@@ -131,48 +131,36 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Contactos Emergencia</h2>
+                        <h2>Galeria por Clases</h2>
                     </div>
                 </div>
                 <!-- /. ROW  -->
                 <hr />
                 <div class="row">
                     <div class="col-md-12">
-                        <select id="select-alumno" class="form-control" onchange="mostrarFormulario()">
-                            <option value="">Seleccione un alumno</option>
-                            <?php foreach ($alumnos as $alumno) : ?>
-                                <option value="<?php echo $alumno['id']; ?>">
-                                    <?php echo htmlspecialchars($alumno['nombre'] . ' ' . $alumno['apellido']); ?>
+                        <select id="select-clase" class="form-control" onchange="mostrarFormulario()">
+                            <option value="">Seleccione una clase</option>
+                            <?php foreach ($clases as $clase) : ?>
+                                <option value="<?php echo $clase['id']; ?>">
+                                    <?php echo htmlspecialchars($clase['nombre'] . ' -> ' . $clase['nivel']); ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div id="contactos-emergencia"></div>
+                    <div id="fotos"></div>
                     <div id="formularioContacto" style="display:none;">
-                        <h2>Añadir Contacto de Emergencia</h2>
-                        <form method="POST" action="../../controllers/controllers_admin/admin_listar_contacto_c.php?action=add">
-                            <input type="hidden" name="id_estudiante" value="" id="id_estudiante_hidden">
+                        <h2>Añadir foto</h2>
+                        <form method="POST" action="../../controllers/controllers_admin/admin_listar_galeria_c.php?action=add" enctype="multipart/form-data">
+                            <input type="hidden" name="id_clase" value="" id="id_clase_hidden">
                             <ul class="nav nav-second-level">
-                                <li class="form-group">
-                                    <label>Nombre *</label>
-                                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del Contacto" required />
-                                </li>
-                                <li class="form-group">
-                                    <label>Apellido *</label>
-                                    <input class="form-control" id="apellido" name="apellido" placeholder="Apellido" required />
-                                </li>
-                                <li class="form-group">
-                                    <label>Email *</label>
-                                    <input class="form-control" id="email" name="email" type="email" placeholder="correo@ejemplo.com" required />
-                                </li>
-                                <li class="form-group">
-                                    <label>Teléfono *</label>
-                                    <input class="form-control" id="tel" name="tel" type="tel" placeholder="Ingrese el teléfono" required />
-                                </li>
-                                <li class="form-group">
-                                    <label>Relación *</label>
-                                    <input class="form-control" id="relacion" name="relacion" placeholder="Ingrese la relación con el estudiante (Ej: Padre, Madre, Abuel@ ...)" required />
-                                </li>
+                                <div class="form-group">
+                                    <label>Foto Perfil</label>
+                                    <input type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Descripcion</label>
+                                    <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
+                                </div>
                             </ul>
                             <button type="submit" class="btn btn-default">Enviar</button>
                             <button type="reset" class="btn btn-primary">Borrar Datos</button>
@@ -193,7 +181,7 @@
 
     </div>
 
-    <script src="../../js/admin/admin_ajax_contactos.js"></script>
+    <script src="../../js/admin/admin_ajax_galeria.js"></script>
     <script src="../../../public/js/jquery-1.10.2.js"></script>
     <script src="../../../public/js/bootstrap.min.js"></script>
     <script src="../../../public/js/jquery.metisMenu.js"></script>

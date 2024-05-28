@@ -100,7 +100,21 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
                     </li>
 
                     <li>
-                        <a href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                        <a href="#"><img src="../../../public/img/biblioteca.png"> Biblioteca<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="../../controllers/controllers_admin/admin_listar_biblioteca_c.php">Ver</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><img src="../../../public/img/camara.png"> Galeria<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="../../controllers/controllers_admin/admin_listar_galeria_c.php">Ver</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
