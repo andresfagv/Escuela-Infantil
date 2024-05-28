@@ -9,7 +9,7 @@ switch($action) {
     case 'delete':
         $id = isset($_GET['id']) ? $_GET['id'] : '';
         if ($id) {
-            $aux = deleteEducadorById($id);
+            deleteEstudianteById($id);
             header('Location: admin_listar_alumnos_c.php');
         }
         break;

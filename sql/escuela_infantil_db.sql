@@ -27,7 +27,7 @@ CREATE TABLE Educador (
     tel VARCHAR(20) NOT NULL,
     f_nacimiento DATE NOT NULL,
     sexo ENUM('hombre', 'mujer') NOT NULL,
-    img VARCHAR(20),
+    img VARCHAR(200),
     FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE Estudiante (
     f_nacimiento DATE NOT NULL,
     sexo ENUM('hombre', 'mujer') NOT NULL,
     alergias TEXT,
-    img VARCHAR(20),
+    img VARCHAR(200),
     comentarios TEXT
 );
 

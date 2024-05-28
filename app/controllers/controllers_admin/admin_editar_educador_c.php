@@ -96,9 +96,6 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_crear_contacto_c.php">Crear</a>
-                            </li>
                         </ul>
                     </li>
 
@@ -221,9 +218,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     if($seguir){
+
+        $nombre_foto_extension = $educador['img'];
+
         if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
             $target_dir = "../../../media/avatar/educador/"; // Carpeta de destino
-            $nombre_foto = $nombre . "_" . $apellido;
+            $nombre_foto = trim($nombre) . "_" . trim($apellido);
     
             // Obtener la extensión del archivo subido
             $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         
-        $nombre_foto_extension = $educador['img'];
+        
 
         editarEducador($nombre, $apellido, $email, $tel, $f_nac, $sexo, $nombre_foto_extension);
 

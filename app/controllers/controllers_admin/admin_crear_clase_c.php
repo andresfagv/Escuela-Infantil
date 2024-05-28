@@ -94,9 +94,6 @@ session_start();
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_crear_contacto_c.php">Crear</a>
-                            </li>
                         </ul>
                     </li> 
 

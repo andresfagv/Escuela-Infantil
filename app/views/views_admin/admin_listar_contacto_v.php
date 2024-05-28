@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Control Admin</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- BOOTSTRAP STYLES-->
     <link href="../../../public/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -19,7 +20,19 @@
 
     <script>
         function confirmarEliminacion() {
-            return confirm("¿Estás seguro de que quieres eliminar esta clase?");
+            return confirm("¿Estás seguro de que quieres eliminar este contacto?");
+        }
+
+        function mostrarFormulario() {
+            var select = document.getElementById("select-alumno");
+            var form = document.getElementById("formularioContacto");
+            var hiddenInput = document.getElementById("id_estudiante_hidden");
+            if (select.value !== "") {
+                form.style.display = "block";
+                hiddenInput.value = select.value; // Asigna el valor del estudiante seleccionado al campo oculto
+            } else {
+                form.style.display = "none";
+            }
         }
     </script>
 </head>
@@ -104,58 +117,81 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Clases</h2>
+                        <h2>Contactos Emergencia</h2>
                     </div>
                 </div>
-                <hr>
+                <!-- /. ROW  -->
+                <hr />
                 <div class="row">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Lista de Clases
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Nivel</th>
-                                            <th>Descripcion</th>
-                                            <th>Menu</th>
-                                            <th>Eliminar</th>
+                    <div class="col-md-12">
+                        <select id="select-alumno" class="form-control" onchange="mostrarFormulario()">
+                            <option value="">Seleccione un alumno</option>
+                            <?php foreach ($alumnos as $alumno) : ?>
+                                <option value="<?php echo $alumno['id']; ?>">
+                                    <?php echo htmlspecialchars($alumno['nombre'] . ' ' . $alumno['apellido']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div id="contactos-emergencia"></div>
+                    <div id="formularioContacto" style="display:none;">
+                        <h2>Añadir Contacto de Emergencia</h2>
+                        <form method="POST" action="../../controllers/controllers_admin/admin_listar_contacto_c.php?action=add">
+                            <input type="hidden" name="id_estudiante" value="" id="id_estudiante_hidden">
+                            <ul class="nav nav-second-level">
+                                <li class="form-group">
+                                    <label>Nombre *</label>
+                                    <input class="form-control" id="nombre" name="nombre" placeholder="Nombre del Contacto" required />
+                                </li>
+                                <li class="form-group">
+                                    <label>Apellido *</label>
+                                    <input class="form-control" id="apellido" name="apellido" placeholder="Apellido" required />
+                                </li>
+                                <li class="form-group">
+                                    <label>Email *</label>
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="correo@ejemplo.com" required />
+                                </li>
+                                <li class="form-group">
+                                    <label>Teléfono *</label>
+                                    <input class="form-control" id="tel" name="tel" type="tel" placeholder="Ingrese el teléfono" required />
+                                </li>
+                                <li class="form-group">
+                                    <label>Relación *</label>
+                                    <input class="form-control" id="relacion" name="relacion" placeholder="Ingrese la relación con el estudiante (Ej: Padre, Madre, Abuel@ ...)" required />
+                                </li>
+                            </ul>
+                            <button type="submit" class="btn btn-default">Enviar</button>
+                            <button type="reset" class="btn btn-primary">Borrar Datos</button>
+                        </form>
+                    </div>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if ($clases): ?>
-                                            <?php foreach ($clases as $clase): ?>
-                                                <tr>
-                                                    <td><?= $clase['nombre'] ?></td>
-                                                    <td><?= $clase['nivel'] ?></td>
-                                                    <td><?= $clase['descripcion'] ?></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_editar_menu_c.php?id=<?= $clase['id'] ?>">Acceder</a></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_listar_clase_c.php?action=delete&id=<?= $clase['id'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <tr>
-                                                <td colspan="10">No hay educadores disponibles.</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                </div>
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class="col-md-12">
+
                     </div>
                 </div>
+                <!-- /. ROW  -->
             </div>
+            <!-- /. PAGE INNER  -->
         </div>
+
     </div>
+
+    <script src="../../js/admin/admin_ajax_contactos.js"></script>
     <script src="../../../public/js/jquery-1.10.2.js"></script>
     <script src="../../../public/js/bootstrap.min.js"></script>
     <script src="../../../public/js/jquery.metisMenu.js"></script>
     <script src="../../../public/js/morris/raphael-2.1.0.min.js"></script>
     <script src="../../../public/js/morris/morris.js"></script>
     <script src="../../../public/js/custom.js"></script>
+
 </body>
+
 </html>
+
+<?php
+
+
+?>

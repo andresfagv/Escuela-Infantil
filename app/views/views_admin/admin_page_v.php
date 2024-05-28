@@ -36,22 +36,22 @@
            <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
-				    <li class="text-center">
-                        <img src="../../../public/img/administracion.png" class="user-image img-responsive"/>
-					</li>
-                     
+            <ul class="nav" id="main-menu">
+                    <li class="text-center">
+                        <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
+                    </li>
+
                     <li>
                         <a href="#"><img src="../../../public/img/salon-de-clases.png"> Clases<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_clase_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_clase_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_clase_c.php">Crear</a>
                             </li>
                         </ul>
-                    </li> 
+                    </li>
 
                     <li>
                         <a href="#"><img src="../../../public/img/educador.png"> Educadores<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
@@ -63,13 +63,13 @@
                                 <a href="../../controllers/controllers_admin/admin_crear_educador_c.php">Crear</a>
                             </li>
                         </ul>
-                    </li> 
+                    </li>
 
                     <li>
                         <a href="#"><img src="../../../public/img/ninos.png"> Alumnos<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_alumnos_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_alumnos_c.php">Ver</a>
                             </li>
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_crear_alumno_c.php">Crear</a>
@@ -81,17 +81,15 @@
                         <a href="#"><img src="../../../public/img/contactos.png"> Contactos<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="../../views/views_admin/admin_listar_contacto_v.php">Ver</a>
+                                <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_crear_contacto_c.php">Crear</a>
-                            </li>
+
                         </ul>
-                    </li> 
+                    </li>
 
                     <li>
-                        <a  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
-                    </li>	
+                        <a href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
+                    </li>
                 </ul>
                
             </div>

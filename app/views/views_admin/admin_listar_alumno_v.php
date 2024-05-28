@@ -91,9 +91,6 @@
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_crear_contacto_c.php">Crear</a>
-                            </li>
                         </ul>
                     </li>
 
@@ -123,12 +120,10 @@
                                         <tr>
                                             <th>Foto</th>
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Alergias</th>
                                             <th>Fecha Nacimiento</th>
-                                            <th>Nombre Tutor Legal</th>
-                                            <th>Apellido Tutor Legal</th>
-                                            <th>Contacto</th>
+                                            <th>Clase</th>
+                                            <th>Tutor Legal</th>
+                                            <th>Telef. Contacto</th>
                                             <th>Editar</th>
                                             <th>Eliminar</th>
                                         </tr>
@@ -138,20 +133,18 @@
                                             <?php foreach ($datos_estudiantes as $dato_estudiante): ?>
                                                 <tr>
                                                     <td class="img-td"><img src="<?= '../../../media/avatar/alumno/' . $dato_estudiante['img'] ?>" alt="Foto" class="img-responsive" /></td>
-                                                    <td><?= $dato_estudiante['nombre_estudiante'] ?></td>
-                                                    <td><?= $dato_estudiante['apellido_estudiante'] ?></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_datos_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>"> <?= $dato_estudiante['nombre_estudiante']." ". $dato_estudiante['apellido_estudiante'] ?></a></td>
                                                     <td><?= $dato_estudiante['f_nacimiento'] ?></td>
-                                                    <td><?= $dato_estudiante['alergias'] ?></td>
-                                                    <td><?= $dato_estudiante['nombre_padre'] ?></td>
-                                                    <td><?= $dato_estudiante['apellido_padre'] ?></td>
+                                                    <td><?= $dato_estudiante['nombre'] ?></td>
+                                                    <td><?= $dato_estudiante['nombre_padre']." ".$dato_estudiante['apellido_padre'] ?></td>
                                                     <td><?= $dato_estudiante['tel'] ?></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_editar_educador_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>">Editar</a></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_listar_educadores_c.php?action=delete&id=<?= $dato_estudiante['id_estudiante'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_editar_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>">Editar</a></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_listar_alumnos_c.php?action=delete&id=<?= $dato_estudiante['id_estudiante'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <tr>
-                                                <td colspan="10">No hay educadores disponibles.</td>
+                                                <td colspan="10">No hay estudiantes disponibles.</td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>

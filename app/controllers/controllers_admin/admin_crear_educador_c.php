@@ -94,9 +94,7 @@ session_start();
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_crear_contacto_c.php">Crear</a>
-                            </li>
+
                         </ul>
                     </li> 
 
@@ -229,7 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($seguir){
         $target_dir = "../../../media/avatar/educador/"; // Carpeta de destino
-        $nombre_foto = $nombre . "_" . $apellido;
+        $nombre_foto = trim($nombre) . "_" . trim($apellido);
 
         // Obtener la extensión del archivo subido
         $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));

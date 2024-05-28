@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../models/models_admin/admin_crear_alumno_m.php");
+require_once("../../models/models_admin/admin_editar_alumno_m.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
 
     <script>
         function confirmarEnvio() {
-            return confirm("¿Estás seguro de que quieres crear este alumno?");
+            return confirm("¿Estás seguro de que quieres editar este alumno?");
         }
     </script>
 </head>
@@ -96,6 +96,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                             <li>
                                 <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
                             </li>
+
                         </ul>
                     </li>
 
@@ -109,7 +110,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Crear Alumno</h2>
+                        <h2>Editar Alumno</h2>
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -119,44 +120,48 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                         <!-- Form Elements -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Datos Alumno
+                                Datos Personales
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
+                                    <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?id_estudiante=' . $id_estudiante); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
                                             <fieldset>
                                                 <legend>Datos Alumno</legend>
                                                 <div class="form-group">
                                                     <label>Nombre Alumno *</label>
-                                                    <input class="form-control" id="nombre_alumno" name="nombre_alumno" placeholder="Nombre del Alumno" required />
+                                                    <input class="form-control" id="nombre_alumno" name="nombre_alumno" placeholder="Nombre del Alumno" value="<?php echo htmlspecialchars($datos['nombre_estudiante']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Apellido Alumno *</label>
-                                                    <input class="form-control" id="apellido_alumno" name="apellido_alumno" placeholder="Apellido del Alumno" required />
+                                                    <input class="form-control" id="apellido_alumno" name="apellido_alumno" placeholder="Apellido del Alumno" value="<?php echo htmlspecialchars($datos['apellido_estudiante']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Fecha de Nacimiento *</label>
-                                                    <input class="form-control" type="date" id="f_nacimiento" name="f_nacimiento" required />
+                                                    <input class="form-control" type="date" id="f_nacimiento" name="f_nacimiento" value="<?php echo htmlspecialchars($datos['f_nacimiento']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sexo *</label>
                                                     <select class="form-control" id="sexo_alumno" name="sexo_alumno" required>
-                                                        <option value="hombre">Hombre</option>
-                                                        <option value="mujer">Mujer</option>
+                                                        <option value="hombre" <?php echo ($datos['sexo_estudiante'] == 'hombre') ? 'selected' : ''; ?>>Hombre</option>
+                                                        <option value="mujer" <?php echo ($datos['sexo_estudiante'] == 'mujer') ? 'selected' : ''; ?>>Mujer</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Foto Perfil</label>
-                                                    <input type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png" required />
-                                                </div>
+                                                    <input type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png" />
+                                                    <p>Foto Actual:</p>
+                                                    <?php if ($datos['img']) : ?>
+                                                        <img src="../../../media/avatar/alumno/<?php echo htmlspecialchars($datos['img']); ?>" alt="Foto de Perfil" />
+                                                    <?php endif; ?>
+                                                </div><br>
                                                 <div class="form-group">
                                                     <label>Alergias</label>
-                                                    <textarea class="form-control" id="alergias" name="alergias"></textarea>
+                                                    <textarea class="form-control" id="alergias" name="alergias"><?php echo htmlspecialchars($datos['alergias']); ?></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Comentarios</label>
-                                                    <textarea class="form-control" id="comentarios" name="comentarios"></textarea>
+                                                    <textarea class="form-control" id="comentarios" name="comentarios"><?php echo htmlspecialchars($datos['comentarios']); ?></textarea>
                                                 </div>
                                             </fieldset>
                                             <fieldset>
@@ -171,7 +176,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                                                         if ($cursos) {
                                                             // Iteramos sobre los cursos y creamos las opciones
                                                             foreach ($cursos as $curso) {
-                                                                echo '<option name="curso" value="' . $curso['id'] . '">' . $curso['nombre'] . '</option>';
+                                                                echo '<option value="' . $curso['id'] . '" ' . ($curso['id'] == $datos['id_curso'] ? 'selected' : '') . '>' . $curso['nombre'] . '</option>';
                                                             }
                                                         } else {
                                                             echo '<option value="">No hay cursos disponibles</option>';
@@ -181,38 +186,37 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                                                 </div>
                                             </fieldset>
 
-
                                             <fieldset>
                                                 <legend>Datos del Padre</legend>
                                                 <div class="form-group">
                                                     <label>Nombre Padre *</label>
-                                                    <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" required />
+                                                    <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" value="<?php echo htmlspecialchars($datos['nombre_padre']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Apellido Padre *</label>
-                                                    <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" required />
+                                                    <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" value="<?php echo htmlspecialchars($datos['apellido_padre']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>DNI</label>
-                                                    <input class="form-control" id="dni" name="dni" required />
+                                                    <input class="form-control" id="dni" name="dni" value="<?php echo htmlspecialchars($datos['DNI']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email *</label>
-                                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email del Padre" required />
+                                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email del Padre" value="<?php echo htmlspecialchars($datos['email_padre']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Teléfono *</label>
-                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" required />
+                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" value="<?php echo htmlspecialchars($datos['tel_padre']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Relación *</label>
-                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" required />
+                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" value="<?php echo htmlspecialchars($datos['relacion']); ?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sexo *</label>
                                                     <select class="form-control" id="sexo_padre" name="sexo_padre" required>
-                                                        <option value="hombre">Hombre</option>
-                                                        <option value="mujer">Mujer</option>
+                                                        <option value="hombre" <?php echo ($datos['sexo_padre'] == 'hombre') ? 'selected' : ''; ?>>Hombre</option>
+                                                        <option value="mujer" <?php echo ($datos['sexo_padre'] == 'mujer') ? 'selected' : ''; ?>>Mujer</option>
                                                     </select>
                                                 </div>
                                             </fieldset>
@@ -220,6 +224,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                                             <button type="submit" class="btn btn-default">Enviar</button>
                                             <button type="reset" class="btn btn-primary">Borrar Datos</button>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -252,9 +257,15 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
 
 <?php
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Datos del alumno
+    $id_estudiante = isset($_GET['id_estudiante']) ? $_GET['id_estudiante'] : null;
+    $datos = obtenerDatosEstudiante($id_estudiante);
+
+    if (!$id_estudiante) {
+        die("No se proporcionó el id del estudiante");
+    }
+
+    // Obtén los datos del formulario
     $nombre_alumno = test_input($_POST['nombre_alumno']);
     $apellido_alumno = test_input($_POST['apellido_alumno']);
     $f_nacimiento = test_input($_POST['f_nacimiento']);
@@ -270,55 +281,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $relacion = test_input($_POST['relacion']);
     $sexo_padre = test_input($_POST['sexo_padre']);
     $dni = test_input($_POST['dni']);
-
     $curso = test_input($_POST['curso']);
-
 
     $seguir = true;
 
-    if (emailExists($email)) {
-        $seguir = false;
-    }
-
+    // Manejo de la subida de la foto
     if ($seguir) {
-        $target_dir = "../../../media/avatar/alumno/"; // Carpeta de destino
-        $nombre_foto = trim($nombre_alumno) . "_" . trim($apellido_alumno);
-        // Obtener la extensión del archivo subido
-        $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
+        $nombre_foto_extension = $datos['img']; // Si no hay nueva foto, usa la existente
 
-        // Combinar el nombre base con ambas extensiones
-        $target_file_jpg = $target_dir . $nombre_foto . ".jpg";
-        $target_file_png = $target_dir . $nombre_foto . ".png";
+        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+            $target_dir = "../../../media/avatar/alumno/";
+            $nombre_foto = $nombre_alumno . "_" . $apellido_alumno;
+            $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
 
-        // Mover la foto a la carpeta de destino con la nueva extensión
-        if ($extension == "jpg" || $extension == "jpeg") {
-            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_jpg)) {
+            $target_file = $target_dir . $nombre_foto . "." . $extension;
+
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                $nombre_foto_extension = $nombre_foto . "." . $extension;
                 echo "La foto ha sido subida con éxito.";
-                $nombre_foto_extension = $nombre_foto . ".jpg";
-                echo '4';
             } else {
                 echo "Lo siento, hubo un error al subir la foto.";
-                $seguir = false;
             }
-        } elseif ($extension == "png") {
-            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_png)) {
-                echo "La foto ha sido subida con éxito.";
-                $nombre_foto_extension = $nombre_foto . ".png";
-            } else {
-                echo "Lo siento, hubo un error al subir la foto.";
-                $seguir = false;
-            }
-        } else {
-            echo "Formato de imagen no compatible. Solo se admiten archivos JPG o PNG.";
-            $seguir = false;
         }
-    }
-    if ($seguir) {
-        $password = crearPassword($email, $dni);
-        $id_user = crearUser($password, $email);
-        $id_alumno = crearAlumno($nombre_alumno, $apellido_alumno, $f_nacimiento, $sexo_alumno, $alergias, $nombre_foto_extension, $comentarios);
-        crearPadre($id_user, $nombre_padre, $apellido_padre, $email, $telefono, $relacion, $sexo_padre, $dni, $id_alumno);
-        inscribirEstudianteEnClase($curso, $id_alumno);
+
+        $datos_padre_y_usuario = obtenerPadreYUsuarioPorIdEstudiante($id_estudiante);
+
+        if ($datos_padre_y_usuario) {
+            $id_padre = $datos_padre_y_usuario['id_padre'];
+            $id_user = $datos_padre_y_usuario['id_user'];
+
+            // Ahora puedes llamar a tus funciones de actualización con estos valores
+            editarAlumno($id_estudiante, $nombre_alumno, $apellido_alumno, $f_nacimiento, $sexo_alumno, $alergias, $nombre_foto_extension, $comentarios);
+            editarPadre($id_padre, $id_user, $nombre_padre, $apellido_padre, $email, $telefono, $relacion, $sexo_padre, $dni, $id_estudiante);
+            editarInscribirEstudianteEnClase($curso, $id_estudiante);
+        } else {
+            echo "Error: No se encontró el padre para el id_estudiante proporcionado.";
+        }
+
+        echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_alumnos_c.php';</script>";
     }
 }
+
+
+
 ?>
