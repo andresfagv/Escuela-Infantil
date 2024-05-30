@@ -1,21 +1,33 @@
 <?php
-$para = 'andres.garvel30@gmail.com';
-$asunto = 'Prueba de correo desde PHP';
-$mensaje = 'Este es un correo de prueba enviado desde PHP';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Para enviar un correo HTML, se debe establecer la cabecera Content-type
-$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+require 'vendor/autoload.php';
 
+$mail = new PHPMailer(true);
 
+try {
+    // Configuración del servidor
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'your-email@gmail.com';
+    $mail->Password = 'your-email-password';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-// Enviar el correo
-$mail_enviado = mail($para, $asunto, $mensaje);
+    // Destinatarios
+    $mail->setFrom('your-email@gmail.com', 'Mailer');
+    $mail->addAddress('andres.garvel30@gmail.com');
 
-// Comprobar si el correo se envió correctamente
-if ($mail_enviado) {
+    // Contenido del correo
+    $mail->isHTML(true);
+    $mail->Subject = 'Prueba de correo desde PHP';
+    $mail->Body    = 'Este es un correo de prueba enviado desde PHP';
+
+    $mail->send();
     echo 'Correo enviado correctamente';
-} else {
-    echo 'Error al enviar el correo';
+} catch (Exception $e) {
+    echo "Error al enviar el correo: {$mail->ErrorInfo}";
 }
 ?>

@@ -117,21 +117,13 @@ CREATE TABLE MenuSemanal (
     FOREIGN KEY (id_clase) REFERENCES Clase(id) ON DELETE CASCADE
 );
 
--- Crear la tabla Productos
 CREATE TABLE Productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,
     tipo ENUM('Juguete', 'Libro') NOT NULL,
-    descripcion VARCHAR(255)
-);
-
--- Crear la tabla Prestamo
-CREATE TABLE Prestamo (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto INT NOT NULL,
-    id_alumno INT NOT NULL,
-    fecha_prestamo DATE NOT NULL,
-    FOREIGN KEY (id_producto) REFERENCES Productos(id),
+    descripcion VARCHAR(255),
+    disponible BOOL NOT NULL,
+    id_alumno INT,
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id)
 );
 

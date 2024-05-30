@@ -43,10 +43,14 @@ function agregarArticulo($nombre, $tipo, $descripcion) {
     // Preparar la consulta SQL
     try {
         // Insertar el usuario en la base de datos
-        $stmt = $conn->prepare("INSERT INTO productos (nombre, tipo, descripcion) VALUES (:nombre, :tipo, :descripcion)");
+
+        $disponible = true;
+
+        $stmt = $conn->prepare("INSERT INTO productos (nombre, tipo, descripcion, disponible) VALUES (:nombre, :tipo, :descripcion, :disponible)");
         $stmt->bindParam(":nombre", $nombre);
         $stmt->bindParam(":tipo", $tipo);
         $stmt->bindParam(":descripcion", $descripcion);
+        $stmt->bindParam(":disponible", $disponible);
 
 
         if ($stmt->execute()) {

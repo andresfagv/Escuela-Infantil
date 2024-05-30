@@ -1,10 +1,12 @@
 $(document).ready(function() {
-    
+    console.log('hola');
+
     $('#select-clase').change(function() {
         var idClase = $(this).val();
+        console.log(idClase);
         if (idClase) {
             $.ajax({
-                url: '../../controllers/controllers_admin/admin_listar_galeria_c.php',
+                url: '../../controllers/controllers_educador/educador_listar_galeria_c.php',
                 type: 'GET',
                 data: { idClase: idClase },
                 success: function(data) {

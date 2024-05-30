@@ -142,7 +142,7 @@
                                             <label>Tipo</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="tipo" value="juguete" />Juguete
+                                                    <input type="radio" name="tipo" value="juguete" required/>Juguete
                                                 </label>
                                             </div>
                                             <div class="radio">
@@ -154,7 +154,7 @@
 
                                         <div class="form-group">
                                             <label>Descripcion</label>
-                                            <input class="form-control" id="apellido" name="apellido"/>
+                                            <input class="form-control" id="descripcion" name="descripcion"/>
                                         </div>
 
 
@@ -181,8 +181,8 @@
                                             <th>Tipo</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
-                                            <th>Eliminar</th>
                                             <th>Disponible</th>
+                                            <th>Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -192,6 +192,7 @@
                                                     <td><?= $producto['tipo'] ?></td>
                                                     <td><?= $producto['nombre'] ?></td>
                                                     <td><?= $producto['descripcion'] ?></td>
+                                                    <td><?= $producto['disponible'] ? 'Disponible' : 'No disponible' ?></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_listar_biblioteca_c.php?action=delete&id=<?= $producto['id'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                     <td>.</td>
                                                 </tr>

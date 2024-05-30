@@ -405,3 +405,10 @@ line-height: 1.428571429;
 td, th {
     text-align: center;
     vertical-align: middle !important; /* Centrado vertical */}
+
+
+    .img-perfil{
+        width: 100%; /* Ajusta el valor según el ancho deseado */
+        height: 100%; /* Ajusta el valor según la altura deseada */
+        border-radius: 10%;
+    }

@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin_page_v.php">Panel Educador</a> 
+                <a class="navbar-brand" href="../../controllers/controllers_educador/educador_page_c.php">Panel Educador</a> 
             </div>
             <div style="color: white;
             padding: 15px 50px 5px 50px;
@@ -38,30 +38,26 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="../../../public/img/profesor.png" class="user-image img-responsive"/>
+                <img class='img-perfil' src="../../../media/avatar/educador/<?php echo htmlspecialchars($_SESSION['img'], ENT_QUOTES, 'UTF-8'); ?>" class="user-image img-responsive"/>
 					</li>
 
                     <li>
-                    <a href="#"><img src="../../../public/img/salon-de-clases.png"> Clases</a>
+                    <a href="../../controllers/controllers_educador/educador_listar_clases_c.php"><img src="../../../public/img/salon-de-clases.png"> Clases</a>
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/ninos.png"> Alumnos</a>
+                        <a href="../../controllers/controllers_educador/educador_listar_galeria_c.php"><img src="../../../public/img/camara.png"> Galeria</a>
                         
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/camara.png"> Galeria</a>
+                        <a href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php"><img src="../../../public/img/biblioteca.png"> Biblioteca</a>
                         
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/comunicados.png"> Comunicados</a>
+                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes</a>
                         
-                    </li>
-
-                    <li>
-                        <a  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
                     </li>	
                 </ul>
                
@@ -70,7 +66,9 @@
         </nav>  
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
-
+                    <div class="col-md-12">
+                    <h2>Educador: <?php echo $_SESSION['nombre']; ?></h2>
+                    </div>
         </div>
 
     </div>

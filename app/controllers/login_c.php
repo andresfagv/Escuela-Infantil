@@ -8,6 +8,7 @@ require_once("../models/login_m.php");
     if(login($password, $email)){
         session_start();
         $_SESSION['usertype'] = $usertype;
+        $_SESSION['email'] = $email;
 
          // Redirigimos al usuario a la página correspondiente según su tipo de usuario
          switch ($usertype) {
@@ -15,7 +16,7 @@ require_once("../models/login_m.php");
                 header("Location: ../views/views_admin/admin_page_v.php");
                 break;
             case 'educador':
-                header("Location: ../views/views_educador/educador_page_v.php");
+                header("Location: ../controllers/controllers_educador/educador_page_c.php");
                 break;
             case 'padre':
                 header("Location: ../views/views_padre/padre_page_v.php");

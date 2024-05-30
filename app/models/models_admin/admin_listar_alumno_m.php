@@ -47,3 +47,6 @@ function deleteEstudianteById($id)
         return false; // Devolver false en caso de error
     }
 }
+
+
+?>
