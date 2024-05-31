@@ -412,3 +412,22 @@ td, th {
         height: 100%; /* Ajusta el valor según la altura deseada */
         border-radius: 10%;
     }
+
+#boton-alquilar{
+    background-color: blue;
+    color: white;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+#boton-devolver{
+    background-color: green;
+    border-radius: 20%;
+    color: white;
+}
+
+#a-devolver{
+    text-decoration: none;
+    color: inherit;
+}
+

@@ -134,7 +134,7 @@
                                                     <td><?= $producto['nombre'] ?></td>
                                                     <td><?= $producto['descripcion'] ?></td>
                                                     <td><?= $producto['disponible'] ? 'Disponible' : 'No disponible' ?></td>
-                                                    <td onclick="mostrarFormulario(<?= $producto['id'] ?>)">Alquilar</td>
+                                                    <td id='boton-alquilar' onclick="mostrarFormulario(<?= $producto['id'] ?>)">Alquilar</td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else : ?>
@@ -174,7 +174,7 @@
                                                     <td><?= $producto['nombre'] ?></td>
                                                     <td><?= getNombreAlumno($producto['id_alumno']) ?></td>
                                                     <td><?= $producto['disponible'] ? 'Disponible' : 'No disponible' ?></td>
-                                                    <td><a href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php?action=devolver&id=<?= $producto['id'] ?>" onclick="return confirmarEliminacion();">Devolver</a></td>
+                                                    <td id='boton-devolver'><a id='a-devolver' href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php?action=devolver&id=<?= $producto['id'] ?>" onclick="return confirmarEliminacion();">Devolver</a></td>
                                                     <td>.</td>
                                                 </tr>
                                             <?php endforeach; ?>

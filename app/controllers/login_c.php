@@ -19,7 +19,7 @@ require_once("../models/login_m.php");
                 header("Location: ../controllers/controllers_educador/educador_page_c.php");
                 break;
             case 'padre':
-                header("Location: ../views/views_padre/padre_page_v.php");
+                header("Location: ../controllers/controllers_padre/padre_page_c.php");
                 break;
         }
         exit();

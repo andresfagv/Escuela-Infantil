@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -74,32 +74,11 @@
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
-            <div class="panel panel-default">
-
-                <div class="panel-heading">
-                    Menu Semanal Clase <?php echo $_SESSION['nombre_clase'] ?>
-                </div>
-
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Día</th>
-                                    <th>Comida 1</th>
-                                    <th>Comida 2</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($menu as $dia) : ?>
-                                    <tr>
-                                        <td><?php echo $dia["dia"]; ?></td>
-                                        <td><?php echo $dia["comida1"]; ?></td>
-                                        <td><?php echo $dia["comida2"]; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+            <div id="page-inner">
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div id="fotos">
+                    <?php imprimirFotos($idClase) ?>
                     </div>
                 </div>
             </div>
