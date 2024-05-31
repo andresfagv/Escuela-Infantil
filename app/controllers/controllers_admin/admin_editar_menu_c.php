@@ -135,7 +135,7 @@ $menu = obtenerMenuPorClase($idClase);
                         <!-- Form Elements -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Datos Menu
+                                Datos Menu Semanal 
                             </div>
                             <div class="panel-body">
                                 <div class="row">
