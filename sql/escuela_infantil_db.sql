@@ -44,6 +44,23 @@ CREATE TABLE Padre (
     sexo ENUM('hombre', 'mujer') NOT NULL,
     DNI VARCHAR(20) NOT NULL,
     FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
+);
+
+-- Creación de la tabla Madre
+CREATE TABLE Madre (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    tel VARCHAR(20) NOT NULL,
+    id_alumno INT NOT NULL,
+    relacion VARCHAR(100) NOT NULL,
+    sexo ENUM('hombre', 'mujer') NOT NULL,
+    DNI VARCHAR(20) NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );
 
 
