@@ -224,15 +224,34 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                                                     <label>Relación *</label>
                                                     <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" required />
                                                 </div>
+                                            </fieldset>
+                                            <fieldset>
+                                                <legend>Datos de la Madre</legend>
                                                 <div class="form-group">
-                                                    <label>Sexo *</label>
-                                                    <select class="form-control" id="sexo_padre" name="sexo_padre" required>
-                                                        <option value="hombre">Hombre</option>
-                                                        <option value="mujer">Mujer</option>
-                                                    </select>
+                                                    <label>Nombre Madre*</label>
+                                                    <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Apellido Madre *</label>
+                                                    <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>DNI</label>
+                                                    <input class="form-control" id="dni" name="dni" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Email *</label>
+                                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email del Padre" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Teléfono *</label>
+                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Relación *</label>
+                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" required />
                                                 </div>
                                             </fieldset>
-
                                             <button type="submit" class="btn btn-default">Enviar</button>
                                             <button type="reset" class="btn btn-primary">Borrar Datos</button>
                                         </form>
