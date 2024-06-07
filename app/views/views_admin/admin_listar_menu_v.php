@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -20,7 +19,7 @@
 
     <script>
         function confirmarEliminacion() {
-            return confirm("¿Estás seguro de que quieres eliminar este educador?");
+            return confirm("¿Estás seguro de que quieres eliminar esta clase?");
         }
     </script>
 </head>
@@ -116,47 +115,35 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Educadores</h2>
+                        <h2>Clases - Menu</h2>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Lista de Educadores
+                            Lista de Clases
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Foto</th>
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>DNI</th>
-                                            <th>E-mail</th>
-                                            <th>Teléfono</th>
-                                            <th>Fecha Nacimiento</th>
-                                            <th>Sexo</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
+                                            <th>Nivel</th>
+                                            <th>Descripcion</th>
+                                            <th>Menu</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($educadores): ?>
-                                            <?php foreach ($educadores as $educador): ?>
+                                        <?php if ($clases): ?>
+                                            <?php foreach ($clases as $clase): ?>
                                                 <tr>
-                                                    <td class="img-td"><img src="<?= '../../../media/avatar/educador/' . $educador['img'] ?>" alt="Foto" class="img-responsive" /></td>
-                                                    <td><?= $educador['nombre'] ?></td>
-                                                    <td><?= $educador['apellido'] ?></td>
-                                                    <td><?= $educador['DNI'] ?></td>
-                                                    <td><?= $educador['email'] ?></td>
-                                                    <td><?= $educador['tel'] ?></td>
-                                                    <td><?= $educador['f_nacimiento'] ?></td>
-                                                    <td><?= $educador['sexo'] ?></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_editar_educador_c.php?id=<?= $educador['id'] ?>">Editar</a></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_listar_educadores_c.php?action=delete&id=<?= $educador['id'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
+                                                    <td><?= $clase['nombre'] ?></td>
+                                                    <td><?= $clase['nivel'] ?></td>
+                                                    <td><?= $clase['descripcion'] ?></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_editar_menu_c.php?id=<?= $clase['id'] ?>">Acceder</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>

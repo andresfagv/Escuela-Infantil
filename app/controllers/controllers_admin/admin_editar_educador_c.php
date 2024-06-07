@@ -49,7 +49,7 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+            <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -64,6 +64,11 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
                                 <a href="../../controllers/controllers_admin/admin_crear_clase_c.php">Crear</a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_menu_c.php"><img src="../../../public/img/menu.png"> Menu</a>
+
                     </li>
 
                     <li>
@@ -90,32 +95,24 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
                         </ul>
                     </li>
 
+
                     <li>
-                        <a href="#"><img src="../../../public/img/contactos.png"> Contactos<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php">Ver</a>
-                            </li>
-                        </ul>
+                        <a href="../../controllers/controllers_admin/admin_listar_contacto_c.php"><img src="../../../public/img/contactos.png"> Contactos</a>
+
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/biblioteca.png"> Biblioteca<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_listar_biblioteca_c.php">Ver</a>
-                            </li>
-                        </ul>
+                        <a href="../../controllers/controllers_admin/admin_listar_biblioteca_c.php"><img src="../../../public/img/biblioteca.png"> Biblioteca</a>
+
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/camara.png"> Galeria<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="../../controllers/controllers_admin/admin_listar_galeria_c.php">Ver</a>
-                            </li>
-                        </ul>
+                        <a href="../../controllers/controllers_admin/admin_listar_galeria_c.php"><img src="../../../public/img/camara.png"> Galeria</a>
+
                     </li>
+
+
+
                 </ul>
             </div>
         </nav>
