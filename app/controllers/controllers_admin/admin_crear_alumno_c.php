@@ -26,6 +26,16 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
         function confirmarEnvio() {
             return confirm("¿Estás seguro de que quieres crear este alumno?");
         }
+
+        function toggleTutor2() {
+            var addTutor2 = document.getElementById("add_tutor2").value;
+            var tutor2Fields = document.getElementById("tutor2_fields");
+            if (addTutor2 === "si") {
+                tutor2Fields.style.display = "block";
+            } else {
+                tutor2Fields.style.display = "none";
+            }
+        }
     </script>
 </head>
 
@@ -171,7 +181,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
                                                     <textarea class="form-control" id="alergias" name="alergias"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Comentarios</label>
+                                                    <label>Otros Datos de Interés</label>
                                                     <textarea class="form-control" id="comentarios" name="comentarios"></textarea>
                                                 </div>
                                             </fieldset>
@@ -199,59 +209,83 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
 
 
                                             <fieldset>
-                                                <legend>Datos del Padre</legend>
+                                                <legend>Datos del Tutor 1</legend>
                                                 <div class="form-group">
-                                                    <label>Nombre Padre *</label>
+                                                    <label>Nombre *</label>
                                                     <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" required />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Apellido Padre *</label>
+                                                    <label>Apellido *</label>
                                                     <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>DNI</label>
-                                                    <input class="form-control" id="dni" name="dni" required />
+                                                    <input class="form-control" id="dni_padre" name="dni_padre" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email *</label>
-                                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email del Padre" required />
+                                                    <input class="form-control" type="email" id="email_padre" name="email_padre" placeholder="Email del Padre" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Teléfono *</label>
-                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" required />
+                                                    <input class="form-control" id="telefono_padre" name="telefono_padre" placeholder="Teléfono del Padre" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Relación *</label>
-                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" required />
+                                                    <input class="form-control" id="relacion_padre" name="relacion_padre" placeholder="Relación con el Alumno" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Sexo *</label>
+                                                    <select class="form-control" id="sexo_padre" name="sexo_padre" required>
+                                                        <option value="hombre">Hombre</option>
+                                                        <option value="mujer">Mujer</option>
+                                                    </select>
                                                 </div>
                                             </fieldset>
-                                            <fieldset>
-                                                <legend>Datos de la Madre</legend>
+                                            <hr>
+                                            <div class="form-group">
+                                                <label>¿Desea añadir un segundo tutor? *</label>
+                                                <select class="form-control" id="add_tutor2" name="add_tutor2" onchange="toggleTutor2()" required>
+                                                    <option value="no">No</option>
+                                                    <option value="si">Sí</option>
+                                                </select>
+                                            </div>
+
+                                            <fieldset id="tutor2_fields" style="display: none;">
+                                                <legend>Datos del Tutor 2 (Opcional)</legend>
                                                 <div class="form-group">
-                                                    <label>Nombre Madre*</label>
-                                                    <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" required />
+                                                    <label>Nombre*</label>
+                                                    <input class="form-control" id="nombre_madre" name="nombre_madre" placeholder="Nombre del Padre" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Apellido Madre *</label>
-                                                    <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" required />
+                                                    <label>Apellido *</label>
+                                                    <input class="form-control" id="apellido_madre" name="apellido_madre" placeholder="Apellido del Padre" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>DNI</label>
-                                                    <input class="form-control" id="dni" name="dni" required />
+                                                    <input class="form-control" id="dni_madre" name="dni_madre" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Email *</label>
-                                                    <input class="form-control" type="email" id="email" name="email" placeholder="Email del Padre" required />
+                                                    <input class="form-control" type="email" id="email_madre" name="email_madre" placeholder="Email del Padre" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Teléfono *</label>
-                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" required />
+                                                    <input class="form-control" id="telefono_madre" name="telefono_madre" placeholder="Teléfono del Padre" />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Relación *</label>
-                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" required />
+                                                    <input class="form-control" id="relacion_madre" name="relacion_madre" placeholder="Relación con el Alumno" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Sexo *</label>
+                                                    <select class="form-control" id="sexo_madre" name="sexo_madre">
+                                                        <option value="hombre">Hombre</option>
+                                                        <option value="mujer">Mujer</option>
+                                                    </select>
                                                 </div>
                                             </fieldset>
+
                                             <button type="submit" class="btn btn-default">Enviar</button>
                                             <button type="reset" class="btn btn-primary">Borrar Datos</button>
                                         </form>
@@ -297,22 +331,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $alergias = test_input($_POST['alergias']);
     $comentarios = test_input($_POST['comentarios']);
 
-    // Datos del padre
+    // Datos del tutor1 (padre)
     $nombre_padre = test_input($_POST['nombre_padre']);
     $apellido_padre = test_input($_POST['apellido_padre']);
-    $email = test_input($_POST['email']);
-    $telefono = test_input($_POST['telefono']);
-    $relacion = test_input($_POST['relacion']);
+    $email_padre = test_input($_POST['email_padre']);
+    $telefono_padre = test_input($_POST['telefono_padre']);
+    $relacion_padre = test_input($_POST['relacion_padre']);
     $sexo_padre = test_input($_POST['sexo_padre']);
-    $dni = test_input($_POST['dni']);
+    $dni_padre = test_input($_POST['dni_padre']);
+
+
+    // Datos del tutor2 (madre))
+    $add_tutor2 = test_input($_POST['add_tutor2']);
+    $madre_completo = false;
+
+    if ($add_tutor2 == "si") {
+        $nombre_madre = test_input($_POST['nombre_madre']);
+        $apellido_madre = test_input($_POST['apellido_madre']);
+        $email_madre = test_input($_POST['email_madre']);
+        $telefono_madre = test_input($_POST['telefono_madre']);
+        $relacion_madre = test_input($_POST['relacion_madre']);
+        $sexo_madre = test_input($_POST['sexo_madre']);
+        $dni_madre = test_input($_POST['dni_madre']);
+        $madre_completo = !empty($nombre_madre) && !empty($apellido_madre) && !empty($dni_madre) && !empty($email_madre) && !empty($telefono_madre) && !empty($relacion_madre);
+    }
+
+
+
+
+
+
 
     $curso = test_input($_POST['curso']);
 
 
     $seguir = true;
 
-    if (emailExists($email)) {
+    if (emailExists($email_padre)) {
+        echo "El email del tutor 1 ya existe.";
+
         $seguir = false;
+    }
+
+    if ($madre_completo) {
+        if (emailExists($email_madre)) {
+            echo "El email del tutor 2 ya existe.";
+            $seguir = false;
+        }
     }
 
     if ($seguir) {
@@ -348,14 +413,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $seguir = false;
         }
     }
-    if ($seguir) {
-        $password = crearPassword($email, $dni);
-        $id_user = crearUser($password, $email);
-        $id_alumno = crearAlumno($nombre_alumno, $apellido_alumno, $f_nacimiento, $sexo_alumno, $alergias, $nombre_foto_extension, $comentarios);
-        crearPadre($id_user, $nombre_padre, $apellido_padre, $email, $telefono, $relacion, $sexo_padre, $dni, $id_alumno);
-        inscribirEstudianteEnClase($curso, $id_alumno);
-        //echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_alumnos_c.php';</script>";
 
+    if ($seguir) {
+        $password_padre = crearPassword($email_padre, $dni_padre);
+        $id_user_padre = crearUser($password_padre, $email_padre);
+        $id_alumno = crearAlumno($nombre_alumno, $apellido_alumno, $f_nacimiento, $sexo_alumno, $alergias, $nombre_foto_extension, $comentarios);
+        crearPadre($id_user_padre, $nombre_padre, $apellido_padre, $email_padre, $telefono_padre, $relacion_padre, $sexo_padre, $dni_padre, $id_alumno);
+        inscribirEstudianteEnClase($curso, $id_alumno);
+    }
+
+    if ($seguir && $madre_completo) {
+        $password_madre = crearPassword($email_madre, $dni_madre);
+        $id_user_madre = crearUser($password_madre, $email_madre);
+        crearPadre($id_user_madre, $nombre_madre, $apellido_madre, $email_madre, $telefono_madre, $relacion_madre, $sexo_madre, $dni_madre, $id_alumno);
+    }
+
+    if ($seguir) {
+        //echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_alumnos_c.php';</script>";
     }
 }
 ?>

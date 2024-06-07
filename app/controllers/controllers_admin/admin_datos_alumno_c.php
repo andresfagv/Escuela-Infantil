@@ -171,7 +171,7 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
                                                     <textarea class="form-control" id="alergias" name="alergias" readonly><?php echo htmlspecialchars($datos['alergias']); ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Comentarios</label>
+                                                    <label>Otros Datos de Interés</label>
                                                     <textarea class="form-control" id="comentarios" name="comentarios" readonly><?php echo htmlspecialchars($datos['comentarios']); ?></textarea>
                                                 </div>
                                             </fieldset>

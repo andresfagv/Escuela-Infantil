@@ -13,13 +13,20 @@ function getAllDatosEstudiantes()
 {
     global $conn;
     try {
-        $sql = "SELECT estudiante.id AS id_estudiante, estudiante.nombre AS nombre_estudiante, estudiante.apellido AS apellido_estudiante, 
-        clase.nombre, estudiante.f_nacimiento, estudiante.img,
-        padre.nombre AS nombre_padre, padre.apellido AS apellido_padre, padre.tel 
-        FROM estudiante
-        INNER JOIN padre ON padre.id_alumno = estudiante.id 
-        INNER JOIN inscripcion ON inscripcion.id_estudiante = estudiante.id 
-        INNER JOIN clase ON inscripcion.id_clase = clase.id";
+        $sql = "SELECT estudiante.id AS id_estudiante, 
+        estudiante.nombre AS nombre_estudiante, 
+        estudiante.apellido AS apellido_estudiante, 
+        clase.nombre AS nombre_clase, 
+        estudiante.f_nacimiento, 
+        estudiante.img,
+        GROUP_CONCAT(padre.nombre SEPARATOR ', ') AS nombres_padres, 
+        GROUP_CONCAT(padre.apellido SEPARATOR ', ') AS apellidos_padres, 
+        GROUP_CONCAT(padre.tel SEPARATOR ', ') AS telefonos_padres
+ FROM estudiante
+ INNER JOIN padre ON padre.id_alumno = estudiante.id 
+ INNER JOIN inscripcion ON inscripcion.id_estudiante = estudiante.id 
+ INNER JOIN clase ON inscripcion.id_clase = clase.id
+ GROUP BY estudiante.id, estudiante.nombre, estudiante.apellido, clase.nombre, estudiante.f_nacimiento, estudiante.img; ";
 
         $stmt = $conn->query($sql);
         $array_estudiantes = $stmt->fetchAll(PDO::FETCH_ASSOC);

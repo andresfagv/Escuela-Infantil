@@ -149,9 +149,9 @@
                                                     <td class="img-td"><img src="<?= '../../../media/avatar/alumno/' . $dato_estudiante['img'] ?>" alt="Foto" class="img-responsive" /></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_datos_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>"> <?= $dato_estudiante['nombre_estudiante']." ". $dato_estudiante['apellido_estudiante'] ?></a></td>
                                                     <td><?= $dato_estudiante['f_nacimiento'] ?></td>
-                                                    <td><?= $dato_estudiante['nombre'] ?></td>
-                                                    <td><?= $dato_estudiante['nombre_padre']." ".$dato_estudiante['apellido_padre'] ?></td>
-                                                    <td><?= $dato_estudiante['tel'] ?></td>
+                                                    <td><?= $dato_estudiante['nombre_clase'] ?></td>
+                                                    <td><?= $dato_estudiante['nombres_padres']." ".$dato_estudiante['apellidos_padres'] ?></td>
+                                                    <td><?= $dato_estudiante['telefonos_padres'] ?></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_editar_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>">Editar</a></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_listar_alumnos_c.php?action=delete&id=<?= $dato_estudiante['id_estudiante'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                 </tr>
