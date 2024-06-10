@@ -72,8 +72,16 @@
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes</a>
-
+                        <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php"><img src="../../../public/img/comunicados.png"> Mensajes<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Mandar</a>
+                            </li>
+                            <li>
+                                <a href="#">Ver</a>
+                            </li>
+                        </ul>
+                        
                     </li>
                 </ul>
 

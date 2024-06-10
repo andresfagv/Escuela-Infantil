@@ -15,7 +15,6 @@ switch($action) {
         break;
     default:
         $datos_estudiantes = getAllDatosEstudiantes();
-        
         include '../../views/views_admin/admin_listar_alumno_v.php';
         break;
 }

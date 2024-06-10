@@ -31,6 +31,18 @@ CREATE TABLE Educador (
     FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
 );
 
+-- Creación de la tabla Estudiante
+CREATE TABLE Estudiante (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    f_nacimiento DATE NOT NULL,
+    sexo ENUM('hombre', 'mujer') NOT NULL,
+    alergias TEXT,
+    img VARCHAR(200),
+    comentarios TEXT
+);
+
 -- Creación de la tabla Padre
 CREATE TABLE Padre (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,22 +55,11 @@ CREATE TABLE Padre (
     relacion VARCHAR(100) NOT NULL,
     sexo ENUM('hombre', 'mujer') NOT NULL,
     DNI VARCHAR(20) NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
+    FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE,
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );
 
 
--- Creación de la tabla Estudiante
-CREATE TABLE Estudiante (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    apellido VARCHAR(255) NOT NULL,
-    f_nacimiento DATE NOT NULL,
-    sexo ENUM('hombre', 'mujer') NOT NULL,
-    alergias TEXT,
-    img VARCHAR(200),
-    comentarios TEXT
-);
 
 -- Creación de la tabla Clase
 CREATE TABLE Clase (
@@ -126,6 +127,20 @@ CREATE TABLE Productos (
     id_alumno INT,
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id)
 );
+
+-- Creación de la tabla Mensajes
+CREATE TABLE Mensajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_educador INT NOT NULL,
+    id_padre INT NOT NULL,
+    titulo TEXT NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha_envio DATETIME NOT NULL,
+    visto BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id_educador) REFERENCES Educador(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_padre) REFERENCES Padre(id) ON DELETE CASCADE
+);
+
 
 
 -- Triggers para eliminar datos despues de eliminar algunos campos

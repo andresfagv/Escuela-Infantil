@@ -79,8 +79,16 @@
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes</a>
-
+                        <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php"><img src="../../../public/img/comunicados.png"> Mensajes<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Mandar</a>
+                            </li>
+                            <li>
+                                <a href="#">Ver</a>
+                            </li>
+                        </ul>
+                        
                     </li>
                 </ul>
 
@@ -88,12 +96,14 @@
 
         </nav>
         <!-- /. NAV SIDE  -->
+
+        
         <div id="page-wrapper">
 
 
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12"> 
                         <h2>Galeria por Clases</h2>
                     </div>
                 </div>

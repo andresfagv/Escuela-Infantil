@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
@@ -74,9 +74,15 @@
         </nav>  
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
+            <div id="page-inner">   
+                <!-- ROW -->
+                <div class="row">
                     <div class="col-md-12">
-                    <h2>Educador: <?php echo $_SESSION['nombre']; ?></h2>
+                        <h2>Mensajes a Familias</h2>
                     </div>
+                </div>
+                <hr>
+            </div>
         </div>
 
     </div>
