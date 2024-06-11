@@ -31,6 +31,18 @@ CREATE TABLE Educador (
     FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
 );
 
+-- Creación de la tabla Estudiante
+CREATE TABLE Estudiante (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    f_nacimiento DATE NOT NULL,
+    sexo ENUM('hombre', 'mujer') NOT NULL,
+    alergias TEXT,
+    img VARCHAR(200),
+    comentarios TEXT
+);
+
 -- Creación de la tabla Padre
 CREATE TABLE Padre (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,22 +55,10 @@ CREATE TABLE Padre (
     relacion VARCHAR(100) NOT NULL,
     sexo ENUM('hombre', 'mujer') NOT NULL,
     DNI VARCHAR(20) NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE
+    FOREIGN KEY (id_user) REFERENCES Users(id) ON DELETE CASCADE,
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );
 
-
--- Creación de la tabla Estudiante
-CREATE TABLE Estudiante (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    apellido VARCHAR(255) NOT NULL,
-    f_nacimiento DATE NOT NULL,
-    sexo ENUM('hombre', 'mujer') NOT NULL,
-    alergias TEXT,
-    img VARCHAR(200),
-    comentarios TEXT
-);
 
 -- Creación de la tabla Clase
 CREATE TABLE Clase (
@@ -94,6 +94,24 @@ CREATE TABLE Contacto (
     email VARCHAR(255) NOT NULL,
     tel VARCHAR(20) NOT NULL,
     relacion VARCHAR(100) NOT NULL,
+    id_alumno INT NOT NULL,
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Documentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    ruta VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255),
+    id_alumno INT NOT NULL,
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Autorizacion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    ruta VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255),
     id_alumno INT NOT NULL,
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );

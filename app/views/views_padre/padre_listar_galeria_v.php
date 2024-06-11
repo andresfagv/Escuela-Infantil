@@ -38,14 +38,18 @@
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="main-menu">
+            <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/feliz.png" class="user-image img-responsive" />
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_padre/padre_listar_hijo_c.php"><img src="../../../public/img/hijo.png"> Mi hijo</a>
+                    </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/hijo.png"> Mi hijo</a>
+                        <a href="../../controllers/controllers_padre/padre_listar_comedor_c.php"><img src="../../../public/img/menu.png"> Comedor</a>
+
                     </li>
 
                     <li>
@@ -54,17 +58,8 @@
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/gmail.png"> Correo</a>
+                        <a href="../../controllers/controllers_padre/padre_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
 
-                    </li>
-
-                    <li>
-                        <a href="#"><img src="../../../public/img/contrato.png"> Documentos</a>
-
-                    </li>
-
-                    <li>
-                        <a href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
                     </li>
 
                 </ul>

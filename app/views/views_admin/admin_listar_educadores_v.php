@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -45,7 +44,7 @@
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -107,7 +106,19 @@
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
@@ -144,8 +155,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($educadores): ?>
-                                            <?php foreach ($educadores as $educador): ?>
+                                        <?php if ($educadores) : ?>
+                                            <?php foreach ($educadores as $educador) : ?>
                                                 <tr>
                                                     <td class="img-td"><img src="<?= '../../../media/avatar/educador/' . $educador['img'] ?>" alt="Foto" class="img-responsive" /></td>
                                                     <td><?= $educador['nombre'] ?></td>
@@ -159,7 +170,7 @@
                                                     <td><a href="../../controllers/controllers_admin/admin_listar_educadores_c.php?action=delete&id=<?= $educador['id'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <tr>
                                                 <td colspan="10">No hay educadores disponibles.</td>
                                             </tr>
@@ -180,4 +191,5 @@
     <script src="../../../public/js/morris/morris.js"></script>
     <script src="../../../public/js/custom.js"></script>
 </body>
+
 </html>

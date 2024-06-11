@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_admin/admin_checklog.php");
 require_once("../../models/models_admin/admin_editar_educador_m.php");
 ?>
 
@@ -49,7 +49,7 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -111,7 +111,19 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
@@ -146,7 +158,7 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
                                             </div>
                                             <div class="form-group">
                                                 <label>DNI</label>
-                                                <input class="form-control" id="dni" name="dni" value="<?php echo htmlspecialchars($educador['DNI']); ?>" required readonly/>
+                                                <input class="form-control" id="dni" name="dni" value="<?php echo htmlspecialchars($educador['DNI']); ?>" required readonly />
                                             </div>
                                             <div class="form-group">
                                                 <label>E-mail</label>
@@ -164,7 +176,7 @@ require_once("../../models/models_admin/admin_editar_educador_m.php");
                                                 <label>Foto Perfil / Avatar</label>
                                                 <input type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png" />
                                                 <br>
-                                                <img src="<?php echo htmlspecialchars('../../../media/avatar/educador/' . $educador['img']); ?>" alt="Foto actual" style="max-width: 200px;"/>
+                                                <img src="<?php echo htmlspecialchars('../../../media/avatar/educador/' . $educador['img']); ?>" alt="Foto actual" style="max-width: 200px;" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Sexo</label>
@@ -227,22 +239,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $seguir = true;
     $mensaje = 'Usuario Creado';
 
-    
-    if($seguir){
+
+    if ($seguir) {
 
         $nombre_foto_extension = $educador['img'];
 
         if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
             $target_dir = "../../../media/avatar/educador/"; // Carpeta de destino
             $nombre_foto = trim($nombre) . "_" . trim($apellido);
-    
+
             // Obtener la extensión del archivo subido
             $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
-    
+
             // Combinar el nombre base con ambas extensiones
             $target_file_jpg = $target_dir . $nombre_foto . ".jpg";
             $target_file_png = $target_dir . $nombre_foto . ".png";
-    
+
             // Mover la foto a la carpeta de destino con la nueva extensión
             if ($extension == "jpg" || $extension == "jpeg") {
                 if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file_jpg)) {
@@ -262,18 +274,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Formato de imagen no compatible. Solo se admiten archivos JPG o PNG.";
             }
         }
-        
-        
+
+
 
         editarEducador($nombre, $apellido, $email, $tel, $f_nac, $sexo, $nombre_foto_extension);
 
         echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_educadores_c.php';</script>";
-
-
-
     }
-
-    
 }
 
 

@@ -413,21 +413,36 @@ td, th {
         border-radius: 10%;
     }
 
-#boton-alquilar{
-    background-color: blue;
-    color: white;
-    border-radius: 20%;
-    cursor: pointer;
-}
+    .btn-alquilar {
+        display: inline-block;
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #000000;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+    }
 
-#boton-devolver{
-    background-color: green;
-    border-radius: 20%;
-    color: white;
-}
+    .btn-devolver {
+        display: inline-block;
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #000000;
+        background-color: green;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+    }
 
-#a-devolver{
-    text-decoration: none;
-    color: inherit;
-}
+    .btn-devolver a{
+        text-decoration: none;
+        color: black;
+    }
 

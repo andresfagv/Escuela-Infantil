@@ -1,10 +1,11 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_admin/admin_checklog.php");
 
 ?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +28,7 @@ session_start();
         }
     </script>
 </head>
+
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -37,17 +39,17 @@ session_start();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../../views/views_admin/admin_page_v.php">Panel Control</a> 
+                <a class="navbar-brand" href="../../views/views_admin/admin_page_v.php">Panel Control</a>
             </div>
             <div style="color: white;
             padding: 15px 50px 5px 50px;
             float: right;
             font-size: 16px;"><a href="../../logout.php" class="btn  square-btn-adjust">Cerrar Sesión</a> </div>
-        </nav>   
+        </nav>
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -109,11 +111,23 @@ session_start();
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
-        </nav>  
+        </nav>
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
@@ -136,11 +150,11 @@ session_start();
                                         <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
                                             <div class="form-group">
                                                 <label>Nombre *</label>
-                                                <input class="form-control" id="nombre" name="nombre" placeholder="El nombre debe de ser único" required/>
+                                                <input class="form-control" id="nombre" name="nombre" placeholder="El nombre debe de ser único" required />
                                             </div>
                                             <div class="form-group">
                                                 <label>Nivel *</label>
-                                                <input class="form-control" id="nivel" name="nivel" placeholder="Ej: 3 - 4 Años" required/>
+                                                <input class="form-control" id="nivel" name="nivel" placeholder="Ej: 3 - 4 Años" required />
                                             </div>
 
                                             <div class="form-group">
@@ -162,7 +176,7 @@ session_start();
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-12">
-                        
+
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -179,6 +193,7 @@ session_start();
     <script src="../../../public/js/morris/morris.js"></script>
     <script src="../../../public/js/custom.js"></script>
 </body>
+
 </html>
 
 <?php
@@ -189,8 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = test_input($_POST['nombre']);
     $nivel = test_input($_POST['nivel']);
     $descripcion = test_input($_POST['descripcion']);
-    
+
     crearClase($nombre, $nivel, $descripcion);
-   
 }
 ?>

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<?php
+require_once("../../controllers/controllers_padre/padre_checklog.php");
+?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -43,9 +46,13 @@
                         <img src="../../../public/img/feliz.png" class="user-image img-responsive" />
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_padre/padre_listar_hijo_c.php"><img src="../../../public/img/hijo.png"> Mi hijo</a>
+                    </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/hijo.png"> Mi hijo</a>
+                        <a href="../../controllers/controllers_padre/padre_listar_comedor_c.php"><img src="../../../public/img/menu.png"> Comedor</a>
+
                     </li>
 
                     <li>
@@ -54,17 +61,8 @@
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/gmail.png"> Correo</a>
+                        <a href="../../controllers/controllers_padre/padre_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
 
-                    </li>
-
-                    <li>
-                        <a href="#"><img src="../../../public/img/contrato.png"> Documentos</a>
-
-                    </li>
-
-                    <li>
-                        <a href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
                     </li>
 
                 </ul>
@@ -74,35 +72,7 @@
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
-            <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    Menu Semanal Clase <?php echo $_SESSION['nombre_clase'] ?>
-                </div>
-
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Día</th>
-                                    <th>Comida 1</th>
-                                    <th>Comida 2</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($menu as $dia) : ?>
-                                    <tr>
-                                        <td><?php echo $dia["dia"]; ?></td>
-                                        <td><?php echo $dia["comida1"]; ?></td>
-                                        <td><?php echo $dia["comida2"]; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>

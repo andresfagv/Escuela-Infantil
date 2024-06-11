@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+require_once("../../controllers/controllers_educador/educador_checklog.php");
 require_once("../../models/models_educador/educador_listar_biblioteca_m.php");
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';

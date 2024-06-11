@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_admin/admin_checklog.php");
 require_once("../../models/models_admin/admin_editar_alumno_m.php");
 ?>
 
@@ -49,7 +49,7 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -111,7 +111,19 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
@@ -135,20 +147,20 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                    <form role="form">
+                                        <form role="form">
                                             <fieldset>
                                                 <legend>Datos Alumno</legend>
                                                 <div class="form-group">
                                                     <label>Nombre Alumno *</label>
-                                                    <input class="form-control" id="nombre_alumno" name="nombre_alumno" placeholder="Nombre del Alumno" value="<?php echo htmlspecialchars($datos['nombre_estudiante']); ?>" required readonly/>
+                                                    <input class="form-control" id="nombre_alumno" name="nombre_alumno" placeholder="Nombre del Alumno" value="<?php echo htmlspecialchars($datos['nombre_estudiante']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Apellido Alumno *</label>
-                                                    <input class="form-control" id="apellido_alumno" name="apellido_alumno" placeholder="Apellido del Alumno" value="<?php echo htmlspecialchars($datos['apellido_estudiante']); ?>" required readonly/>
+                                                    <input class="form-control" id="apellido_alumno" name="apellido_alumno" placeholder="Apellido del Alumno" value="<?php echo htmlspecialchars($datos['apellido_estudiante']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Fecha de Nacimiento *</label>
-                                                    <input class="form-control" type="date" id="f_nacimiento" name="f_nacimiento" value="<?php echo htmlspecialchars($datos['f_nacimiento']); ?>" required readonly/>
+                                                    <input class="form-control" type="date" id="f_nacimiento" name="f_nacimiento" value="<?php echo htmlspecialchars($datos['f_nacimiento']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sexo *</label>
@@ -198,11 +210,11 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
                                                 <legend>Datos del Padre</legend>
                                                 <div class="form-group">
                                                     <label>Nombre Padre *</label>
-                                                    <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" value="<?php echo htmlspecialchars($datos['nombre_padre']); ?>" required readonly/>
+                                                    <input class="form-control" id="nombre_padre" name="nombre_padre" placeholder="Nombre del Padre" value="<?php echo htmlspecialchars($datos['nombre_padre']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Apellido Padre *</label>
-                                                    <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" value="<?php echo htmlspecialchars($datos['apellido_padre']); ?>" required readonly/>
+                                                    <input class="form-control" id="apellido_padre" name="apellido_padre" placeholder="Apellido del Padre" value="<?php echo htmlspecialchars($datos['apellido_padre']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>DNI</label>
@@ -214,11 +226,11 @@ require_once("../../models/models_admin/admin_editar_alumno_m.php");
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Teléfono *</label>
-                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" value="<?php echo htmlspecialchars($datos['tel_padre']); ?>" required readonly/>
+                                                    <input class="form-control" id="telefono" name="telefono" placeholder="Teléfono del Padre" value="<?php echo htmlspecialchars($datos['tel_padre']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Relación *</label>
-                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" value="<?php echo htmlspecialchars($datos['relacion']); ?>" required readonly/>
+                                                    <input class="form-control" id="relacion" name="relacion" placeholder="Relación con el Alumno" value="<?php echo htmlspecialchars($datos['relacion']); ?>" required readonly />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sexo *</label>

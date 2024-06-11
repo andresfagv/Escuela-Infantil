@@ -4,8 +4,9 @@ require_once("../models/login_m.php");
     $email=test_input($_POST['email']);
     $password=test_input($_POST['password']);
     $usertype=test_input($_POST['usertype']);
+    $resultado = login($password, $email);
 
-    if(login($password, $email)){
+    if($resultado['tipo_usuario'] == $usertype){
         session_start();
         $_SESSION['usertype'] = $usertype;
         $_SESSION['email'] = $email;

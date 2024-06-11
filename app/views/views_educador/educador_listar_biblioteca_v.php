@@ -58,7 +58,15 @@
                     </li>
 
                     <li>
-                        <a href="../../controllers/controllers_educador/educador_listar_clases_c.php"><img src="../../../public/img/salon-de-clases.png"> Clases</a>
+                        <a href="../../controllers/controllers_educador/educador_listar_alumno_c.php"><img src="../../../public/img/ninos.png"> Alumnos</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_contactos_c.php"><img src="../../../public/img/contactos.png"> Contactos</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_menu_c.php"><img src="../../../public/img/menu.png"> Menú</a>
                     </li>
 
                     <li>
@@ -72,9 +80,15 @@
                     </li>
 
                     <li>
-                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes</a>
+                        <a href="../../controllers/controllers_educador/educador_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
 
                     </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
+
+                    </li>
+
                 </ul>
 
             </div>
@@ -134,7 +148,7 @@
                                                     <td><?= $producto['nombre'] ?></td>
                                                     <td><?= $producto['descripcion'] ?></td>
                                                     <td><?= $producto['disponible'] ? 'Disponible' : 'No disponible' ?></td>
-                                                    <td id='boton-alquilar' onclick="mostrarFormulario(<?= $producto['id'] ?>)">Alquilar</td>
+                                                    <td class='btn-alquilar' onclick="mostrarFormulario(<?= $producto['id'] ?>)">Alquilar</td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else : ?>
@@ -174,8 +188,7 @@
                                                     <td><?= $producto['nombre'] ?></td>
                                                     <td><?= getNombreAlumno($producto['id_alumno']) ?></td>
                                                     <td><?= $producto['disponible'] ? 'Disponible' : 'No disponible' ?></td>
-                                                    <td id='boton-devolver'><a id='a-devolver' href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php?action=devolver&id=<?= $producto['id'] ?>" onclick="return confirmarEliminacion();">Devolver</a></td>
-                                                    <td>.</td>
+                                                    <td class='btn-devolver'><a id='a-devolver' href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php?action=devolver&id=<?= $producto['id'] ?>" onclick="return confirmarEliminacion();">Devolver</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else : ?>
