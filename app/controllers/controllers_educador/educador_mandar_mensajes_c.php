@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../../models/models_padre/padre_mandar_mensajes_m.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +22,12 @@ require_once("../../models/models_padre/padre_mandar_mensajes_m.php");
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="icon" href="../../../public/img/icon.PNG" type="image/png">
+
+    <script>
+        function confirmarEnvio() {
+            return confirm("¿Estás seguro de que quieres crear este usuario?");
+        }
+    </script>
 </head>
 
 <body>
@@ -104,28 +111,59 @@ require_once("../../models/models_padre/padre_mandar_mensajes_m.php");
                                         <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
                                             <div class="form-group">
                                                 <label>Titulo</label>
-                                                <input class="form-control" id="nombre" name="nombre" placeholder="Titulo" required />
+                                                <input class="form-control" id="titulo" name="titulo" placeholder="Titulo" required />
                                             </div>
                                             <div class="form-group">
                                                 <label>Contenido</label>
-                                                <input class="form-control" id="nivel" name="nivel" placeholder="Ej: 3 - 4 Años" required />
+                                                <textarea class="form-control" id="nivel" name="nivel" placeholder="Este es el conenido del mensaje" required></textarea>
                                             </div>
 
+                                            <!-- SELECCIONAR ENTRE MANDAR A CLASES O A PADRES  -->
                                             <div class="form-group">
+                                                <label>Enviar a</label>
+                                                <select class="form-control" id="tipo_destino" name="tipo_destino" onchange="mostrarDesplegable()">
+                                                    <option value="" disabled selected>Seleccione destino</option>
+                                                    <option value="clases">Clases</option>
+                                                    <option value="padres">Padres</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- CLASES -->
+                                            <div class="form-group" id="grupo_clases" style="display: none;">
+                                                <label>Tus Clases</label>
+                                                <select class="form-control" name="clase">
+                                                    <option value="" disabled selected>Seleccione una clase</option>
+
+                                                    <?php
+                                                    // Llamamos a la función para obtener las clases
+                                                    $clases = getAllClases();
+                                                    // Verificamos si se obtuvieron clases
+                                                    if ($clases) {
+                                                        foreach ($clases as $clase) {
+                                                            echo "<option value='" . $clase['id'] . "'>" . $clase['nombre'] . "->" . $clase['nivel'] . "</option>";
+                                                        }
+                                                    } else {
+                                                        echo '<option value="">No hay clases disponibles</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+
+                                            <!-- PADRES -->
+                                            <div class="form-group" id="grupo_padres" style="display: none;">
                                                 <label>Padres</label>
-                                                <select class="form-control" name="curso">
+                                                <select class="form-control" name="padre">
                                                     <option value="" disabled selected>Padre:/Nombre/Email ,Hijo:/Nombre/Apellido </option>
+                                                    <option value="all">Todos los padres</option>
                                                     <?php
                                                     // Llamamos a la función para obtener los padres
                                                     $padres = obtenerTodosLosPadres();
-                                                    //var_dump($padres);
                                                     // Verificamos si se obtuvieron padres
                                                     if ($padres) {
-
                                                         foreach ($padres as $padre) {
                                                             //echo "<img id='imgEstu'  src='../../../media/avatar/alumno/" . htmlspecialchars($padre['imgEstu'], ENT_QUOTES, 'UTF-8') . "'/>";
 
-                                                            echo "<option value='" . $padre['id'] . "'>Padre: " . $padre['nomPad'] . " " . $padre['emailPad'] . "  ------  Hijo:" . "<img class='img-perfil'  src='../../../media/avatar/alumno/" . htmlspecialchars($padre['imgEstu'], ENT_QUOTES, 'UTF-8') . "' class='user-image img-responsive'/>" . $padre['apeEstu'] . "  </option>";
+                                                            echo "<option value='" . $padre['id'] . "'>Padre: " . $padre['nomPad'] . " " . $padre['emailPad'] . "  ------  Hijo:" . $padre['nomEstu'] . " " . $padre['apeEstu'] . "  </option>";
                                                         }
                                                     } else {
                                                         echo '<option value="">No hay padres disponibles</option>';
@@ -157,8 +195,51 @@ require_once("../../models/models_padre/padre_mandar_mensajes_m.php");
     <script src="../../../public/js/morris/raphael-2.1.0.min.js"></script>
     <script src="../../../public/js/morris/morris.js"></script>
     <script src="../../../public/js/custom.js"></script>
+    <script>
+        function mostrarDesplegable() {
+            var tipoDestino = document.getElementById('tipo_destino').value;
+            if (tipoDestino == 'clases') {
+                document.getElementById('grupo_clases').style.display = 'block';
+                document.getElementById('grupo_padres').style.display = 'none';
+            } else if (tipoDestino == 'padres') {
+                document.getElementById('grupo_clases').style.display = 'none';
+                document.getElementById('grupo_padres').style.display = 'block';
+            } else {
+                document.getElementById('grupo_clases').style.display = 'none';
+                document.getElementById('grupo_padres').style.display = 'none';
+            }
+        }
+    </script>
 
 
 </body>
 
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $titulo = test_input($_POST['titulo']);
+    $contenido = test_input($_POST['titulo']);
+    $tipoDestino=$_POST['tipo_destino'];
+    
+    if($tipoDestino=='clases'){
+        $claseId = $_POST['clase'];
+
+    }elseif($tipoDestino == 'padres'){
+        $padreId = $_POST['padre'];
+        
+        if($padreId=='all'){
+            foreach ($padres as $padre) {
+                enviarMensaje($padre['id'], $titulo, $contenido,$_SESSION['id_educador'] );
+            }
+        }else {
+            // Enviar mensaje a un solo padre
+            enviarMensaje($padreId, $titulo, $contenido,$_SESSION['id_educador']);
+        }
+    }
+}
+
+
+
+
+?>
