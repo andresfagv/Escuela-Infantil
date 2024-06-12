@@ -56,13 +56,13 @@
                     </li>
 
                     <li>
-                        <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php"><img src="../../../public/img/comunicados.png"> Mensajes<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Mandar</a>
+                            <a href="../../controllers/controllers_educador/educador_mandar_mensajes_c.php">Mandar</a>
                             </li>
                             <li>
-                                <a href="#">Ver</a>
+                                <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php">Ver</a>
                             </li>
                         </ul>
                         
@@ -78,7 +78,7 @@
                 <!-- ROW -->
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Mensajes a Familias</h2>
+                        <h2>Ver Mensajes a Familias</h2>
                     </div>
                 </div>
                 <hr>

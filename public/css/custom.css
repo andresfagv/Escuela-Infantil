@@ -412,6 +412,11 @@ td, th {
         height: 100%; /* Ajusta el valor según la altura deseada */
         border-radius: 10%;
     }
+    #imgEstu{
+        width: 30%;
+        height: 30%;
+        border-radius: 5%;
+    }
 
 #boton-alquilar{
     background-color: blue;
@@ -429,5 +434,11 @@ td, th {
 #a-devolver{
     text-decoration: none;
     color: inherit;
+}
+
+
+.imgNiño{
+    width: 50%;
+    height: 50%;
 }
 
