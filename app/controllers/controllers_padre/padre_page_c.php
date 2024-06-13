@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_padre/padre_checklog.php");
 require_once("../../models/models_padre/padre_page_m.php");
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';

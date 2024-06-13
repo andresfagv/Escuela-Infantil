@@ -44,7 +44,7 @@
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -106,7 +106,19 @@
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
@@ -140,20 +152,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($datos_estudiantes): ?>
-                                            <?php foreach ($datos_estudiantes as $dato_estudiante): ?>
+                                        <?php if ($datos_estudiantes) : ?>
+                                            <?php foreach ($datos_estudiantes as $dato_estudiante) : ?>
                                                 <tr>
                                                     <td class="img-td"><img src="<?= '../../../media/avatar/alumno/' . $dato_estudiante['img'] ?>" alt="Foto" class="img-responsive" /></td>
-                                                    <td><a href="../../controllers/controllers_admin/admin_datos_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>"> <?= $dato_estudiante['nombre_estudiante']." ". $dato_estudiante['apellido_estudiante'] ?></a></td>
+                                                    <td><a href="../../controllers/controllers_admin/admin_datos_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>"> <?= $dato_estudiante['nombre_estudiante'] . " " . $dato_estudiante['apellido_estudiante'] ?></a></td>
                                                     <td><?= $dato_estudiante['f_nacimiento'] ?></td>
                                                     <td><?= $dato_estudiante['nombre_clase'] ?></td>
-                                                    <td><?= $dato_estudiante['nombres_padres']." ".$dato_estudiante['apellidos_padres'] ?></td>
+                                                    <td><?= $dato_estudiante['nombres_padres'] . " " . $dato_estudiante['apellidos_padres'] ?></td>
                                                     <td><?= $dato_estudiante['telefonos_padres'] ?></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_editar_alumno_c.php?id=<?= $dato_estudiante['id_estudiante'] ?>">Editar</a></td>
                                                     <td><a href="../../controllers/controllers_admin/admin_listar_alumnos_c.php?action=delete&id=<?= $dato_estudiante['id_estudiante'] ?>" onclick="return confirmarEliminacion();">Eliminar</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <tr>
                                                 <td colspan="10">No hay estudiantes disponibles.</td>
                                             </tr>
@@ -174,4 +186,5 @@
     <script src="../../../public/js/morris/morris.js"></script>
     <script src="../../../public/js/custom.js"></script>
 </body>
+
 </html>

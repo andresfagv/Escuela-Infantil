@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+require_once("../../controllers/controllers_admin/admin_checklog.php");
 require_once("../../models/models_admin/admin_listar_biblioteca_m.php");
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';

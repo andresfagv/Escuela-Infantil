@@ -44,7 +44,7 @@
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -106,7 +106,19 @@
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
@@ -128,7 +140,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                <form method="POST" action="../../controllers/controllers_admin/admin_listar_biblioteca_c.php?action=add" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
+                                    <form method="POST" action="../../controllers/controllers_admin/admin_listar_biblioteca_c.php?action=add" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
                                         <div class="form-group">
                                             <label>Nombre</label>
                                             <input class="form-control" id="nombre" name="nombre" required />
@@ -138,7 +150,7 @@
                                             <label>Tipo</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="tipo" value="juguete" required/>Juguete
+                                                    <input type="radio" name="tipo" value="juguete" required />Juguete
                                                 </label>
                                             </div>
                                             <div class="radio">
@@ -150,7 +162,7 @@
 
                                         <div class="form-group">
                                             <label>Descripcion</label>
-                                            <input class="form-control" id="descripcion" name="descripcion"/>
+                                            <input class="form-control" id="descripcion" name="descripcion" />
                                         </div>
 
 

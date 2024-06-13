@@ -60,7 +60,6 @@ CREATE TABLE Padre (
 );
 
 
-
 -- Creación de la tabla Clase
 CREATE TABLE Clase (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -95,6 +94,24 @@ CREATE TABLE Contacto (
     email VARCHAR(255) NOT NULL,
     tel VARCHAR(20) NOT NULL,
     relacion VARCHAR(100) NOT NULL,
+    id_alumno INT NOT NULL,
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Documentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    ruta VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255),
+    id_alumno INT NOT NULL,
+    FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Autorizacion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    ruta VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255),
     id_alumno INT NOT NULL,
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_admin/admin_checklog.php");
 require_once("../../models/models_admin/admin_editar_menu_m.php");
 $nombre_clase = obtenerNombreClase($idClase);
 $menu = obtenerMenuPorClase($idClase);
@@ -51,7 +51,7 @@ $menu = obtenerMenuPorClase($idClase);
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -113,7 +113,19 @@ $menu = obtenerMenuPorClase($idClase);
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>
@@ -132,12 +144,12 @@ $menu = obtenerMenuPorClase($idClase);
                         <!-- Form Elements -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Datos Menu Semanal 
+                                Datos Menu Semanal
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                    <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . urlencode($idClase); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
+                                        <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . urlencode($idClase); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
 
                                             <?php if (!empty($menu)) : ?>
                                                 <?php foreach ($menu as $index => $diaMenu) : ?>
@@ -216,6 +228,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $conn = null;
     echo "<script>window.location.href = '../../controllers/controllers_admin/admin_listar_menu_c.php';</script>";
-
 }
 ?>

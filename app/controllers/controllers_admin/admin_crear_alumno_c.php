@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_admin/admin_checklog.php");
 require_once("../../models/models_admin/admin_crear_alumno_m.php");
 ?>
 
@@ -59,7 +59,7 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
+                <ul class="nav" id="main-menu">
                     <li class="text-center">
                         <img src="../../../public/img/administracion.png" class="user-image img-responsive" />
                     </li>
@@ -121,7 +121,19 @@ require_once("../../models/models_admin/admin_crear_alumno_m.php");
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_admin/admin_crear_admin_c.php"><img src="../../../public/img/conf.png"> Crear Perfil Administrador</a>
+                    </li>
 
                 </ul>
             </div>

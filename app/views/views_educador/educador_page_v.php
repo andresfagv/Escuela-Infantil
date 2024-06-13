@@ -1,22 +1,35 @@
-﻿<!DOCTYPE html>
+﻿<?php
+require_once("../../controllers/controllers_educador/educador_checklog.php");
+?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
+
 <head>
+    <meta charset="utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel Educador</title>
     <!-- BOOTSTRAP STYLES-->
+    <!-- BOOTSTRAP STYLES-->
     <link href="../../../public/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
     <!-- FONTAWESOME STYLES-->
     <link href="../../../public/css/font-awesome.css" rel="stylesheet" />
     <!-- MORRIS CHART STYLES-->
+    <!-- MORRIS CHART STYLES-->
     <link href="../../../public/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
     <!-- CUSTOM STYLES-->
     <link href="../../../public/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="icon" href="../../../public/img/icon.PNG" type="image/png">
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="icon" href="../../../public/img/icon.PNG" type="image/png">
 </head>
+
 
 <body>
     <div id="wrapper">
@@ -29,11 +42,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="../../controllers/controllers_educador/educador_page_c.php">Panel Educador</a>
+                <a class="navbar-brand" href="../../controllers/controllers_educador/educador_page_c.php">Panel Educador</a>
             </div>
             <div style="color: white;
             padding: 15px 50px 5px 50px;
             float: right;
             font-size: 16px;"><a href="../../logout.php" class="btn  square-btn-adjust">Cerrar Sesión</a> </div>
+        </nav>
+        <!-- /. NAV TOP  -->
         </nav>
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
@@ -44,17 +60,33 @@
                     </li>
 
                     <li>
-                        <a href="../../controllers/controllers_educador/educador_listar_clases_c.php"><img src="../../../public/img/salon-de-clases.png"> Clases</a>
+                        <a href="../../controllers/controllers_educador/educador_listar_alumno_c.php"><img src="../../../public/img/ninos.png"> Alumnos</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_contactos_c.php"><img src="../../../public/img/contactos.png"> Contactos</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_menu_c.php"><img src="../../../public/img/menu.png"> Menú</a>
                     </li>
 
                     <li>
                         <a href="../../controllers/controllers_educador/educador_listar_galeria_c.php"><img src="../../../public/img/camara.png"> Galeria</a>
 
+
                     </li>
 
                     <li>
                         <a href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php"><img src="../../../public/img/biblioteca.png"> Biblioteca</a>
+                    </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
                     </li>
 
                     <li>
@@ -67,14 +99,19 @@
                                 <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php">Ver</a>
                             </li>
                         </ul>
-
                     </li>
                 </ul>
 
             </div>
 
         </nav>
+
+        </nav>
         <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div class="col-md-12">
+                <h2>Educador: <?php echo $_SESSION['nombre']; ?></h2>
+            </div>
         <div id="page-wrapper">
             <div class="col-md-12">
                 <h2>Educador: <?php echo $_SESSION['nombre']; ?></h2>
@@ -91,6 +128,9 @@
     <script src="../../../public/js/custom.js"></script>
 
 
+
+
 </body>
+
 
 </html>

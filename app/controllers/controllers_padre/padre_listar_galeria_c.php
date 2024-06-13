@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../../controllers/controllers_padre/padre_checklog.php");
 require_once("../../models/models_padre/padre_listar_galeria_m.php");
 
 // Check if session variable 'id_clase' is set
@@ -36,7 +36,7 @@ function imprimirFotos($idClase){
             echo '</tbody>';
             echo '</table>';
         } else {
-            echo '<p>No hay fotos para la clase seleccionada</p>';
+            echo '<p>Todavía no hay fotos!! Próximamente...</p>';
         }
         echo '</div>'; // End of the div with id "fotos"
     }
