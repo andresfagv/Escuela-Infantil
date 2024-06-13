@@ -9,7 +9,8 @@ function test_input($data)
 }
 
 
-function obtenerTodosLosPadres(){
+function obtenerTodosLosPadres()
+{
     global $conn;
     try {
         // Preparar la consulta SQL
@@ -21,7 +22,7 @@ function obtenerTodosLosPadres(){
 
         // Obtener los resultados
         $array_padres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+
         return $array_padres;
     } catch (Exception $e) {
         // Registrar el error
@@ -31,7 +32,8 @@ function obtenerTodosLosPadres(){
 }
 
 
-function getAllClases() {
+function getAllClases()
+{
     global $conn;
     try {
         $stmt = $conn->prepare("SELECT * FROM clase");
@@ -45,7 +47,8 @@ function getAllClases() {
 }
 
 
-function enviarMensaje($idPadre, $titulo, $contenido, $idEducador){
+function enviarMensaje($idPadre, $titulo, $contenido, $idEducador)
+{
     global $conn;
     $fechaHoy = date('Y-m-d');
     try {
@@ -55,8 +58,8 @@ function enviarMensaje($idPadre, $titulo, $contenido, $idEducador){
         $stmt->bindParam(':titulo', $titulo);
         $stmt->bindParam(':contenido', $contenido);
         $stmt->bindParam(':fecha', $fechaHoy);
-        
-        
+
+
 
         $stmt->execute();
 
@@ -70,12 +73,27 @@ function enviarMensaje($idPadre, $titulo, $contenido, $idEducador){
 
 
 
-function enviarMensajeAClase($claseId, $titulo, $contenido) {
+function enviarMensajeAClase($claseId, $titulo, $contenido, $idEducador)
+{
     // Aquí va la lógica para enviar el mensaje a una clase
-    // Ejemplo:
-    // obtenerPadresPorClase($claseId);
-    // foreach ($padres as $padre) {
-    //     enviarMensaje($padre['id'], $titulo, $contenido);
-    // }
+    global $conn;
+    try {
+        $stmt = $conn->prepare("SELECT padre.nombre AS nomPad, padre.email AS emailPad, padre.id FROM inscripcion JOIN estudiante ON inscripcion.id_estudiante = estudiante.id JOIN padre ON estudiante.id = padre.id_alumno WHERE :claseId= inscripcion.id_clase;
+");
+        $stmt->bindParam(':claseId', $claseId);
+
+        $stmt->execute();
+
+        $array_padres = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($array_padres as $key) {
+            enviarMensaje($key['id'], $titulo, $contenido, $idEducador);
+        }
+
+
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return false;
+    }
 }
 ?>

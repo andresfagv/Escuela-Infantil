@@ -10,7 +10,8 @@ function test_input($data)
 }
 
 
-function datos_Estudiante_Padre($email) {
+function datos_Estudiante_Padre($email)
+{
     global $conn;
     try {
         // Preparar la consulta SQL
@@ -38,7 +39,25 @@ function datos_Estudiante_Padre($email) {
     }
 }
 
-function obtenerMenu($id_clase){
+function obtenerPadresDeUnaClase()
+{
+    global $conn;
+    try {
+        $stmt = $conn->prepare("SELECT * FROM padre");
+
+
+        $stmt->execute();
+
+
+        //return $array_clases;
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return false;
+    }
+}
+
+function obtenerMenu($id_clase)
+{
     global $conn;
     try {
         // Preparar la consulta SQL
@@ -61,4 +80,3 @@ function obtenerMenu($id_clase){
         return false;
     }
 }
-?>

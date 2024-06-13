@@ -110,12 +110,12 @@ require_once("../../models/models_padre/padre_mandar_mensajes_m.php");
                                     <div class="col-md-6">
                                         <form role="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" onsubmit="return confirmarEnvio();">
                                             <div class="form-group">
-                                                <label>Titulo</label>
+                                                <label for="titulo">Titulo</label>
                                                 <input class="form-control" id="titulo" name="titulo" placeholder="Titulo" required />
                                             </div>
                                             <div class="form-group">
-                                                <label>Contenido</label>
-                                                <textarea class="form-control" id="nivel" name="nivel" placeholder="Este es el conenido del mensaje" required></textarea>
+                                                <label for="contenido">Contenido</label>
+                                                <textarea class="form-control" id="contenido" name="contenido" placeholder="Este es el conenido del mensaje" required></textarea>
                                             </div>
 
                                             <!-- SELECCIONAR ENTRE MANDAR A CLASES O A PADRES  -->
@@ -219,12 +219,12 @@ require_once("../../models/models_padre/padre_mandar_mensajes_m.php");
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = test_input($_POST['titulo']);
-    $contenido = test_input($_POST['titulo']);
+    $contenido = test_input($_POST['contenido']);
     $tipoDestino=$_POST['tipo_destino'];
     
     if($tipoDestino=='clases'){
         $claseId = $_POST['clase'];
-
+        enviarMensajeAClase($claseId,$titulo,$contenido, $_SESSION['id_educador']);
     }elseif($tipoDestino == 'padres'){
         $padreId = $_POST['padre'];
         
