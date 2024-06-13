@@ -82,6 +82,19 @@
 
                     </li>
 
+                    <li>
+                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="../../controllers/controllers_educador/educador_mandar_mensajes_c.php">Mandar</a>
+                            </li>
+                            <li>
+                                <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php">Ver</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
                 </ul>
 
             </div>
@@ -101,7 +114,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-md-12">
-                        <select id="select-clase" class="form-control" onchange="mostrarFormulario()">
+                        <select id="select-clase" class="form-control">
                             <option value="">Seleccione una clase</option>
                             <?php foreach ($clases as $clase) : ?>
                                 <option value="<?php echo $clase['id']; ?>">
@@ -110,6 +123,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <br>
                     <div id="alumnos"></div>
 
                 </div>

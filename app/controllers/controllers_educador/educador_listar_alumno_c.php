@@ -27,7 +27,7 @@ if ($idClase) {
                 echo '<td><a href="../../controllers/controllers_educador/educador_datos_alumno_c.php?id=' . $dato_estudiante['id_estudiante'] . '">' . $dato_estudiante['nombre_estudiante'] . ' ' . $dato_estudiante['apellido_estudiante'] . '</a></td>';
                 echo '<td>' . $dato_estudiante['f_nacimiento'] . '</td>';
                 echo '<td>' . $dato_estudiante['nombre_clase'] . '</td>';
-                echo '<td>' . $dato_estudiante['nombres_padres'] . ' ' . $dato_estudiante['apellidos_padres'] . '</td>';
+                echo '<td>' . $dato_estudiante['nombres_padres'] . ' <br>' . $dato_estudiante['apellidos_padres'] . '</td>';
                 echo '<td>' . $dato_estudiante['telefonos_padres'] . '</td>';
                 echo '</tr>';
             }

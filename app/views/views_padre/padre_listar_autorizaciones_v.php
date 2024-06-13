@@ -65,6 +65,9 @@ require_once("../../controllers/controllers_padre/padre_checklog.php");
 
                     </li>
 
+                    <li>
+                        <a href="../../controllers/controllers_padre/padre_listar_mensajes_c.php"><img src="../../../public/img/comunicados.png"> Mensajes</a>
+                    </li>
                 </ul>
 
             </div>

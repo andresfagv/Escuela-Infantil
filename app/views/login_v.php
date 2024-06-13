@@ -18,16 +18,19 @@
               <div class="form-group text-center">
                 <label>Tipo de usuario:</label><br>
                 <label class="img-opcion">
+                  <p style="color: gray;">Director</p>
                   <input type="radio" name="usertype" value="admin">
                   <img src="../../public/img/colegio.png" alt="centro-educativo">
                 </label>
   
                 <label class="img-opcion">
+                  <p style="color: gray;">Educador</p>
                   <input type="radio" name="usertype" value="educador">
                   <img src="../../public/img/educador.png" alt="educador">
                 </label>
   
                 <label class="img-opcion">
+                  <p style="color: gray;">Familias</p>
                   <input type="radio" name="usertype" value="padre" checked>
                   <img src="../../public/img/familia.png" alt="familiar">
                 </label>

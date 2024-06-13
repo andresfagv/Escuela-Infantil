@@ -79,6 +79,19 @@ require_once("../../controllers/controllers_educador/educador_checklog.php");
 
                     </li>
 
+                    <li>
+                        <a href="#"><img src="../../../public/img/comunicados.png"> Mensajes<span class=" arrow"> <img src="../../../public/img/arrow.png"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="../../controllers/controllers_educador/educador_mandar_mensajes_c.php">Mandar</a>
+                            </li>
+                            <li>
+                                <a href="../../controllers/controllers_educador/educador_listar_mensajes_c.php">Ver</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
                 </ul>
 
             </div>

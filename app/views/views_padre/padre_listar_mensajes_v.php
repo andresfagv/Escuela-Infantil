@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once("../../controllers/controllers_padre/padre_checklog.php");
 ?>
 <!DOCTYPE html>
@@ -64,21 +64,9 @@ require_once("../../controllers/controllers_padre/padre_checklog.php");
                         <a href="../../controllers/controllers_padre/padre_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
 
                     </li>
-                    <li>
-                        <a href="../../controllers/controllers_padre/padre_listar_mensajes_c.php"><img src="../../../public/img/comunicados.png"> Mensajes
-                            <?php
-                            $x=false;
-                            foreach ($arrayMensajesDePadre as $key) {
-                                if ($key['visto'] == 0) {
-                                    $x=true;
-                                }
-                            }
-                            if($x){
-                                echo '<img src="../../../public/img/bell-regular-24.png">';
-                            }
 
-                            ?>
-                        </a>
+                    <li>
+                        <a href="../../controllers/controllers_padre/padre_listar_mensajes_c.php"><img src="../../../public/img/comunicados.png"> Mensajes</a>
                     </li>
                 </ul>
 
@@ -87,11 +75,46 @@ require_once("../../controllers/controllers_padre/padre_checklog.php");
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
-
+            <div id="page-inner">
+                <!-- ROW -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Ver Mensajes de <?php if(isset($_SESSION['nombre_padre'])){echo $_SESSION['nombre_padre'];} ?></h2>
+                    </div>
+                </div>
+                <hr>
+                <?php
+                if ($arrayMensajesDePadre) {
+                    foreach ($arrayMensajesDePadre as $key) {
+                        echo '<div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            '.$key['nombre'].'
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="main-text ">'.$key['titulo'].'</h5>
+                                            <p class="text-body-secondary">'.$key['contenido'].'</a>
+                                        </div>
+                                        <div class="card-footer text-body-secondary">
+                                            '.substr($key['fecha_envio'], 0, 10).'
+                                            <img src="../../../public/img/check-regular-24.png" style="cursor:pointer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            ';
+                    }
+                }
+                ?>
+                <img src="../../../public/img/check-regular-24.png" style="cursor:pointer" id="visto">
+            </div>
         </div>
 
     </div>
 
+    <script src="../../js/padre/padre_ajax_estadoMensaje.js"></script>
     <script src="../../../public/js/jquery-1.10.2.js"></script>
     <script src="../../../public/js/bootstrap.min.js"></script>
     <script src="../../../public/js/jquery.metisMenu.js"></script>

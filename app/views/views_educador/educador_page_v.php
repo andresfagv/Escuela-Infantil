@@ -42,7 +42,6 @@ require_once("../../controllers/controllers_educador/educador_checklog.php");
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="../../controllers/controllers_educador/educador_page_c.php">Panel Educador</a>
-                <a class="navbar-brand" href="../../controllers/controllers_educador/educador_page_c.php">Panel Educador</a>
             </div>
             <div style="color: white;
             padding: 15px 50px 5px 50px;
@@ -108,10 +107,6 @@ require_once("../../controllers/controllers_educador/educador_checklog.php");
 
         </nav>
         <!-- /. NAV SIDE  -->
-        <div id="page-wrapper">
-            <div class="col-md-12">
-                <h2>Educador: <?php echo $_SESSION['nombre']; ?></h2>
-            </div>
         <div id="page-wrapper">
             <div class="col-md-12">
                 <h2>Educador: <?php echo $_SESSION['nombre']; ?></h2>

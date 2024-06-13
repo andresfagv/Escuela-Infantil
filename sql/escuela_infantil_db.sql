@@ -98,6 +98,7 @@ CREATE TABLE Contacto (
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );
 
+-- Creacion de la tabla Documentos
 CREATE TABLE Documentos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -107,6 +108,7 @@ CREATE TABLE Documentos (
     FOREIGN KEY (id_alumno) REFERENCES Estudiante(id) ON DELETE CASCADE
 );
 
+-- Creacion de la tabla Autorizacion
 CREATE TABLE Autorizacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -135,6 +137,7 @@ CREATE TABLE MenuSemanal (
     FOREIGN KEY (id_clase) REFERENCES Clase(id) ON DELETE CASCADE
 );
 
+-- Creación de la tabla Productos
 CREATE TABLE Productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(45) NOT NULL,

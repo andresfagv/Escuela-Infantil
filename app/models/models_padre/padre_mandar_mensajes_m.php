@@ -14,7 +14,7 @@ function obtenerTodosLosPadres()
     global $conn;
     try {
         // Preparar la consulta SQL
-        $sql = "SELECT estudiante.img as imgEstu, estudiante.nombre as nomEstu, estudiante.apellido as apeEstu, padre.nombre as nomPad, padre.email as emailPad, padre.id FROM padre JOIN estudiante ON estudiante.id=padre.id_alumno;";
+        $sql = "SELECT estudiante.id as idEstu, estudiante.img as imgEstu, estudiante.nombre as nomEstu, estudiante.apellido as apeEstu, GROUP_CONCAT(padre.nombre SEPARATOR '-') as nomPad, GROUP_CONCAT(padre.email SEPARATOR '-') as emailPad FROM padre JOIN estudiante ON estudiante.id=padre.id_alumno GROUP BY estudiante.id;";
         $stmt = $conn->prepare($sql);
 
         // Ejecutar la consulta
@@ -30,6 +30,7 @@ function obtenerTodosLosPadres()
         return false;
     }
 }
+
 
 
 function getAllClases()
@@ -85,9 +86,14 @@ function enviarMensajeAClase($claseId, $titulo, $contenido, $idEducador)
         $stmt->execute();
 
         $array_padres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        foreach ($array_padres as $key) {
-            enviarMensaje($key['id'], $titulo, $contenido, $idEducador);
+
+        var_dump($array_padres);
+        if(count($array_padres)>0){
+            foreach ($array_padres as $key) {
+                enviarMensaje($key['id'], $titulo, $contenido, $idEducador);
+            }
+        }else{
+            return 'No hay niños asociados a esa clase aun';
         }
 
 

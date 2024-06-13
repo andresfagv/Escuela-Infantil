@@ -44,7 +44,15 @@
                     </li>
 
                     <li>
-                        <a href="../../controllers/controllers_educador/educador_listar_clases_c.php"><img src="../../../public/img/salon-de-clases.png"> Clases</a>
+                        <a href="../../controllers/controllers_educador/educador_listar_alumno_c.php"><img src="../../../public/img/ninos.png"> Alumnos</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_contactos_c.php"><img src="../../../public/img/contactos.png"> Contactos</a>
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_menu_c.php"><img src="../../../public/img/menu.png"> Menú</a>
                     </li>
 
                     <li>
@@ -54,6 +62,16 @@
 
                     <li>
                         <a href="../../controllers/controllers_educador/educador_listar_biblioteca_c.php"><img src="../../../public/img/biblioteca.png"> Biblioteca</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_autorizaciones_c.php"><img src="../../../public/img/contrato.png"> Autorizaciones</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../../controllers/controllers_educador/educador_listar_documentos_c.php"><img src="../../../public/img/documentos.png"> Documentos</a>
 
                     </li>
 
