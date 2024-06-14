@@ -86,7 +86,7 @@
                         echo '<div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <div class="card-header">
+                                        <div class="card-header">De:
                                             '.$key['nombre'].'
                                         </div>
                                         <div class="card-body">
@@ -95,17 +95,17 @@
                                         </div>
                                         <div class="card-footer text-body-secondary">
                                             '.substr($key['fecha_envio'], 0, 10);
-                                            if($key['visto']==0){
+                                            if($key['visto'] == 0) {
                                                 echo '<img src="../../../public/img/check-regular-24.png" style="cursor:pointer" class="visto" data-valor="'.$key['id'].'">';
                                             }
-                                            '</div>
+                        echo          '</div>
                                     </div>
                                 </div>
-                                </div>
-                                <hr>
-                            ';
+                            </div>
+                            <hr>';
                     }
                 }
+                
                 ?>
                 <hr>
             </div>

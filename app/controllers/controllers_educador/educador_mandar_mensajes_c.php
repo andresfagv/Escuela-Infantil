@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($tipoDestino == 'padres') {
         $padreId = $_POST['padre'];
         if ($padreId == 'all') {
+            $padres = getAllPadres();
             foreach ($padres as $padre) {
                 enviarMensaje($padre['id'], $titulo, $contenido, $_SESSION['id_educador']);
             }

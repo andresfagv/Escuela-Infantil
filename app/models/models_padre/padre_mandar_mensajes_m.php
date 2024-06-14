@@ -47,6 +47,20 @@ function getAllClases()
     }
 }
 
+function getAllPadres()
+{
+    global $conn;
+    try {
+        $stmt = $conn->prepare("SELECT id FROM padre;");
+        $stmt->execute();
+        $array_padre = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $array_padre;
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        return false;
+    }
+}
+
 
 function enviarMensaje($idPadre, $titulo, $contenido, $idEducador)
 {
@@ -86,14 +100,12 @@ function enviarMensajeAClase($claseId, $titulo, $contenido, $idEducador)
         $stmt->execute();
 
         $array_padres = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        var_dump($array_padres);
         if(count($array_padres)>0){
             foreach ($array_padres as $key) {
                 enviarMensaje($key['id'], $titulo, $contenido, $idEducador);
             }
         }else{
-            return 'No hay niños asociados a esa clase aun';
+            return 'No hay niños asociados a esa clase aún';
         }
 
 
