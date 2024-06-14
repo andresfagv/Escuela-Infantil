@@ -4,7 +4,7 @@ require_once("../../db/db.php");
 function getMensajesDeUnPadre($idPadre){
     global $conn;
     try {
-        $stmt = $conn->prepare("SELECT titulo, contenido, fecha_envio, visto, educador.nombre FROM mensajes JOIN educador ON mensajes.id_educador=educador.id WHERE mensajes.id_padre=:idPadre;");
+        $stmt = $conn->prepare("SELECT mensajes.id, titulo, contenido, fecha_envio, visto, educador.nombre FROM mensajes JOIN educador ON mensajes.id_educador=educador.id WHERE mensajes.id_padre=:idPadre;");
         $stmt->bindParam(':idPadre', $idPadre);
 
         $stmt->execute();

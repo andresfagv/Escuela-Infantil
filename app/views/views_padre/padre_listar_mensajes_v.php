@@ -1,6 +1,3 @@
-<?php
-require_once("../../controllers/controllers_padre/padre_checklog.php");
-?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -94,35 +91,54 @@ require_once("../../controllers/controllers_padre/padre_checklog.php");
                                         </div>
                                         <div class="card-body">
                                             <h5 class="main-text ">'.$key['titulo'].'</h5>
-                                            <p class="text-body-secondary">'.$key['contenido'].'</a>
+                                            <p class="text-body-secondary">'.$key['contenido'].'</p>
                                         </div>
                                         <div class="card-footer text-body-secondary">
-                                            '.substr($key['fecha_envio'], 0, 10).'
-                                            <img src="../../../public/img/check-regular-24.png" style="cursor:pointer">
-                                        </div>
+                                            '.substr($key['fecha_envio'], 0, 10);
+                                            if($key['visto']==0){
+                                                echo '<img src="../../../public/img/check-regular-24.png" style="cursor:pointer" class="visto" data-valor="'.$key['id'].'">';
+                                            }
+                                            '</div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
+                                </div>
+                                <hr>
                             ';
                     }
                 }
                 ?>
-                <img src="../../../public/img/check-regular-24.png" style="cursor:pointer" id="visto">
+                <hr>
             </div>
         </div>
 
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imgs = document.querySelectorAll('img.visto');
+            imgs.forEach(function(img) {
+                img.addEventListener('click', function() {
+                    const idMensaje = img.getAttribute('data-valor');
+                    console.log(idMensaje);
 
-    <script src="../../js/padre/padre_ajax_estadoMensaje.js"></script>
-    <script src="../../../public/js/jquery-1.10.2.js"></script>
-    <script src="../../../public/js/bootstrap.min.js"></script>
-    <script src="../../../public/js/jquery.metisMenu.js"></script>
-    <script src="../../../public/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="../../../public/js/morris/morris.js"></script>
-    <script src="../../../public/js/custom.js"></script>
+                    fetch('../../controllers/controllers_padre/padre_cambiar_EstadoMensjaje_c.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ idMensaje: idMensaje })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.log('Error:', error);
+                    });
 
-
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
